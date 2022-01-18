@@ -19,6 +19,14 @@ def index(request):
         }
     return render(request,"index1.html",con)
 
+def index1(request):
+    studdata=Studentdata.objects.all()
+    con={
+            'data':studdata
+        }
+    return render(request,"index.html",con)
+
+
 def about(request):
     return render(request,"aboutme.html")
 def register(request):
@@ -91,7 +99,7 @@ def user_login(request):
                     'data':studdata
                 }
                         
-                return redirect("/notification")
+                return redirect("/index1")
             else:
                 return redirect("/notification")
         else:
@@ -226,7 +234,7 @@ def apply(request,pk):
         mail=obj1.email
         apply = AppliedList.objects.create(student=mail,appliedby=email) 
         apply.save()
-        return redirect('/')
+        return redirect('/index1')
     
 def profile(request):
      if request.session.has_key('email'):
@@ -299,6 +307,6 @@ def approved(request,pk):
         users.save()
         obj5 = ForApproval.objects.filter(pk=pk)
         obj5.delete()
-        return redirect('/ADMIN/Approveuser/')
+        return redirect('/Approveuser')
 
 

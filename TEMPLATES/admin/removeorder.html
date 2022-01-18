@@ -1,23 +1,176 @@
-<?php
-     $servername = "localhost";
-     $username = "root";
-     $password = "";
-     $dbname = "user-registration";
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<title>Admin</title>
+{% comment %} <style media="all" type="text/css""css/all.css"; {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
+</style>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    align:center;
+    
+  }
+  th, td {
+    border: 1px solid black;
+   text-align:center;
+    padding: 0px;
+  }
+  </style>
+</head>
+
+<div id="main">
+ 
+  
+  <div id="header">
+     <a href="#" class="logo"><img src="{% static 'img/logo.gif' %} " width="101" height="29" alt=""/></a>
+    <ul id="top-navigation">
+    <li><span><span><a href="index.php">Home</a></span></span></li>
+    <li><span><span><a href="user.php">User</a></span></span></li>
+      <li class="active"><span><span>Conform</span></span></li>
+      <li><span><span><a href="product.php">Action</a></span></span></li>
+    </ul>
+  </div></div>
+  <div id="mid?dle">
+    {% comment %} <div id="center-column"> {% endcomment %}
+      <br>
+      <br>
+
+        {% comment %} <div class="top-bar">  {% endcomment %}
+        
+        </div>
+       
+        {% for d in data %}
+       <form action="" method="post">
+       {% comment %} <label for="fname">Tutor id</label><br>
+       <input type="number" id="t_id" name="t_id"><br>
+       <label for="fname">Institute name</label><br>
+       <input type="text" id="inst_name" name="inst_name"><br>
+       <label for="fname">Prefer Subject</label><br>
+       <input type="text" id="prefer_sub" name="prefer_sub"><br>
+       <label for="fname">Class</label><br>
+       <input type="text" id="clasd" name="class"><br>
+       <label for="fname">Medium of Communication</label><br>
+       <input type="text" id="medium" name="medium"><br>
+       <label for="fname">Prefer Location</label><br>
+       <input type="text" id="prefer_location" name="prefer_location"><br>
+       <label for="fname">Prefer Salary</label><br>
+       <input type="number" id="salary" name="salary"><br>
+       <input type="submit" value="Submit">
+       <br>
+       <br> {% endcomment %}
+        
+       <br><BR><br>
+       <div class="nbody" style="margin: 0px 100px; overflow: hidden;">
      
-     // Create connection
-     $conn = new mysqli($servername, $username, $password, $dbname);
-     // Check connection
-     if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-     }
-     $pid = $_POST['id'];
-     $sql = "DELETE FROM service_tbl WHERE id='$pid'";
-     
-     if ($conn->query($sql) === TRUE) {
-     echo "record deleted successfully";
-     } else {
-     echo "Error: " . $sql . "<br>" . $conn->error;
-     }
-     
-     $conn->close();
-     ?>
+       
+      
+        <div class="">
+                  <div class="nfbody">
+                  <div class="p_head">
+                  <div style="float: right;">
+                        {% comment %} <input type="submit" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Deadline Over" /> {% endcomment %}
+                          {% comment %} <input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;cursor: default;" name="" value="Already Applied" /> {% endcomment %}
+                          <form  method="post">{% csrf_token %}
+                      <input type="submit" class="sub_button" style="margin: 0px;" name="" value="Approve" formaction="/approved/{{d.pk}}/"/>
+                    </form></div>
+                  <div>
+                    <img src="{{d.tutorimg.url}}" width="100px" height="100px">
+                  </div>
+                  <div class="p_nmdate">
+                    <h4>{{d.name}}</h4>
+                    <h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a> &nbsp;&nbsp;</h5>
+                  </div>
+                </div>
+                <div class="p_body">
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <p><label>Subject: </label></p>
+                      </div>
+                      <div class="itemrowdiv2">
+                      
+                        <span>{{d.subjects}}</span>
+                       
+                      </div>
+                    </div>
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Class: </label>
+                      </div>
+                      <div class="itemrowdiv2">
+                        <span>{{d.cls}}</span>
+                      </div>
+                    </div>
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Medium: </label>
+                      </div>
+                      <div class="itemrowdiv2">
+                        <span>{{d.medium}}</span>
+                      </div>
+                    </div>
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Salary: </label>
+                      </div>
+                      <div class="itemrowdiv2">
+                        <span>{{d.salary}}</span>
+                      </div>
+                    </div>
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Location: </label>
+                      </div>
+                      <div class="itemrowdiv2">
+                        <span>{{d.location}}</span>
+                      </div>
+                    </div>
+                    <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Location: </label>
+                      </div>
+                      <div class="itemrowdiv2">
+                        <span>{{d.location}}</span>
+                      </div>
+                    </div><br>
+                  <div class="itemrow">
+                      <div class="itemrowdiv1">
+                        <label>Certificates </label>
+                      </div>
+                      <div>
+                        <img src="{{d.certificate1.url}}" width="60px" height="60px">
+                        <img src="{{d.certificate2.url}}" width="60px" height="60px">
+                      </div>
+                    </div>
+                </div>
+              </div>
+              
+    
+        </div>
+        {% comment %} <div class="nfeedright">
+          
+        </div> {% endcomment %}
+      </div>
+      
+    </div> </form>  {% endfor %}
+    <script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+    <!-- homemenu tab script -->
+    <script  src="{% static 'js/homemenu.js' %}"></script>
+    
+    <!-- topnavfixed script -->
+    <script  src="{% static 'js/topnavfixed.js' %}"></script>
+      
+</body>
+</html>
+{% endblock %}

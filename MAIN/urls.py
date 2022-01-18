@@ -2,6 +2,7 @@ from django.urls import path, include
 from .import views
 urlpatterns = [
      path('', views.index, name="index"),
+       path('index1', views.index1, name="index1"),
      path('register', views.register, name="register"),
      path('register', views.register, name="register"),
      path('register_user', views.register_user, name="register_user"),
@@ -22,7 +23,8 @@ urlpatterns = [
       path('profile', views.profile, name="profile"),
         path('tutordata', views.tutordata, name="tutordata"),
           path('Approveuser', views.Approveuser, name="Approveuser"),
-           path('approved/<int:pk>/', views.approved, name="approved")
+           path('approved/<int:pk>/', views.approved, name="approved"),
+      #  path('Deleteuser', views.Deleteuser, name="Deleteuser")
 
 
 ]

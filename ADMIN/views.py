@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from MAIN.models import ForApproval
+from MAIN.models import ForApproval, Studentdata, Tutordata
 
 # Create your views here.
 def admlogin(request):
@@ -42,5 +42,32 @@ def Approveuser(request):
              }
         
         return render(request,'admin/order.html',con)
+
+
+def Deleteuser(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        tutdata=Tutordata.objects.all()
+        studdata=Studentdata.objects.all()
+        con={
+            'data':tutdata,
+            'sdata':studdata
+             }
+            #  http://127.0.0.1:8000/ADMIN/Deleteuser/
+        
+        return render(request,'admin/removeorder.html',con)
+
+def userdelete(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        # obj = Studentdata.objects.filter(pk=pk)
+        obj1= Studentdata.objects.get(pk=pk)
+       
+        obj5 = Tutordata.objects.filter(pk=pk)
+        obj5.delete()
+        return redirect('/ADMIN/Deleteuser/')
+
+
+    
  
 
