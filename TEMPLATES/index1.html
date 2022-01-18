@@ -1,0 +1,160 @@
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	
+</head>
+<body class="body1">
+<div>
+	<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<h1><a href="index.php">Educare</span></a></h1>
+				<h3><a href="#">Hotline: +91 8590208470</a></h3>
+				
+
+			</div>
+		</header>
+		  
+		</div>
+		<div class="topnav">
+			<div class="parent2">
+		  <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+		</div>
+			<a class="active navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
+			<div style="float: right;" >
+				<table>
+					<tr>
+						<td>
+							<a class="navlink" href="notification.php">Notification."1"</a>
+						</td>
+								<td>
+							<a class="navlink" href="profile.php?uid='.$user.'">user name</a>
+						</td>
+						<td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td>
+						<td>
+							<a class="navlink" href="login.php">Login</a>
+						</td>
+						<td>
+							<a class="navlink" href="/register">Register</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- newsfeed -->
+	<BR><BR>
+	{% for d in data %}
+	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedleft">
+							<div class="nfbody">
+							<div class="p_head">
+							<div style="float: right;">
+										{% comment %} <input type="submit" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Deadline Over" /> {% endcomment %}
+											{% comment %} <input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;cursor: default;" name="" value="Already Applied" /> {% endcomment %}
+											<form  method="post">{% csrf_token %}
+									<input type="submit" class="sub_button" style="margin: 0px;" name="" value="Apply" formaction="/login"/>
+								</form></div>
+							<div>
+								<img src="{{d.proimg.url}}" width="41px" height="41px">
+							</div>
+							<div class="p_nmdate">
+								<h4>{{d.name}}</h4>
+								<h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a> &nbsp;&nbsp;</h5>
+							</div>
+						</div>
+						<div class="p_body">
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<p><label>Subject: </label></p>
+					  			</div>
+					  			<div class="itemrowdiv2">
+									
+					  				<span>{{d.subjects}}</span>
+									 
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Class: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{d.cls}}</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Medium: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{d.medium}}</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Salary: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{d.salary}}</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Location: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{d.location}}</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Institute </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{d.institute}}</span>
+					  			</div>
+					  		</div>
+						</div>
+					</div>
+
+		</div>
+		<div class="nfeedright">
+			
+		</div>
+	</div>
+	
+
+</div>{% endfor %}
+<!-- main jquery script -->
+<script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+<!-- homemenu tab script -->
+<script  src="{% static 'js/homemenu.js' %}"></script>
+
+<!-- topnavfixed script -->
+<script  src="{% static 'js/topnavfixed.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

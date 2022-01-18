@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="css/footer.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	
+</head>
+<body class="body1">
+<div>
+	<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<!--
+					include 'inc/banner.inc.php';
+				-->
+
+			</div>
+		</header>
+		<div class="topnav">
+			<div class="parent2">
+		  <div class="test1 bimage1"><a href=""><img src="image/tech.png" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+		</div>
+			<a class="active navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
+			<a class="navlink" href="postform.php">Post</a>
+			<div style="float: right;" >
+				<table>
+					<tr>
+						<td>
+							<a class="navlink" href="profile.php?uid='.$user.'">'user name</a>
+						</td>
+						<td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td><td>
+							<a class="navlink" href="login.php">Login</a>
+						</td>
+						<td>
+							<a class="navlink" href="registration.php">Register</a>
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- newsfeed -->
+	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedleft">
+							<div class="nfbody">
+							<div class="p_head">
+							<div style="float: right;"><span style='color: red;'>Only teacher can apply!</span>";
+										<input type="submit" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Deadline Over" />';
+											<input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Already Applied" />';
+											<form action="" method="post">
+											<input type="submit" class="sub_button" style="margin: 0px;" name="post_apply" value="Confirm Apply" />
+										</form></div>
+							<div>
+								<img src="{% static 'image/profilepic'%}" width="41px" height="41px">
+							</div>
+							<div class="p_nmdate">
+								<h4>user name</h4>
+								<h5 style="color: #757575;">'.$time->time_ago($post_time).' &nbsp;|&nbsp; Deadline: '.$deadline.'</h5>
+							</div>
+						</div>
+						<div class="p_body">
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<p><label>Subject: </label></p>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$sub.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Class: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$class.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Medium: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$medium.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Salary: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$salary.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Location: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$location.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Preferred University: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$p_university.'</span>
+					  			</div>
+					  		
+					  		</div>
+						</div>
+					</div>';
+
+					}
+				?>
+		</div>
+		<div class="nfeedright">
+			
+		</div>
+	</div>
+	<!-- footer -->
+	<div>
+	<!--
+		include 'inc/footer.inc.php';
+	-->
+	</div>
+
+</div>
+<!-- home menu tab -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="{% static 'js/homemenu.js' %}"></script>
+</body>
+</html>

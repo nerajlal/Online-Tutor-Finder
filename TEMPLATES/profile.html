@@ -1,0 +1,179 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	
+</head>
+<body class="body1">
+<div>
+	<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<?php
+					include 'inc/banner.inc.php';
+				?>
+
+			</div>
+		</header>
+		<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-animate-left" stylRe="width:100px;" id="mySidebar">
+		  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+		  <a href="index.php" class="w3-bar-item w3-button">Tution</a>
+		  <a href="photography.php" class="w3-bar-item w3-button">Photography</a>
+		  <a href="#" class="w3-bar-item w3-button">IT</a>
+		</div>
+		<div class="topnav">
+			<div class="parent2">
+		  <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+		</div>
+			<a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
+			<a class="navlink" href="postform.php">Post</a>';
+			<div style="float: right;" >
+				<table>
+					<tr>
+						<td>
+							<a class="navlink" href="notification.php">Notification'.1.'</a>
+						</td>
+								<td>
+							<a class="navlink" href="profile.php?uid='.$user.'">user name</a>
+						</td>
+						<td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td><td>
+							<a class="navlink" href="login.php">Login</a>
+						</td>
+						<td>
+							<a class="navlink" href="registration.php">Register</a>
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- newsfeed -->
+	<div style="margin: 20px; overflow: hidden;">
+		<div style="width: 1000px; margin: 0 auto;">
+		
+			<ul>
+				<li style="float: left;">
+					<div class="settingsleftcontent">
+						<ul>
+							<li><a href="profile.php?uid='.$user.'" style=" background-color: #4CAF50;; border-radius: 4px; color: #fff;" >Post</a></li>
+							<li><a href="aboutme.php?uid='.$user.'" >About</a></li>
+							<li><a href="settings.php">Settings</a></li>
+						</ul>
+					</div>
+				</li>
+				<li style="float: right;">
+					{% comment %} <div class="holecontainer">
+	
+						{% comment %} <div class="p_bodyn">
+							<p>No post found !!!</p>
+						</div> {% endcomment %}
+					{% comment %} </div> {% endcomment %} 
+					
+							<div class="nfbody">
+							<div class="p_head">
+							<div>
+								{% comment %} <a href="editpost.php?pid='.$post_id.'" style="float: right; color: #aaa; font-weight: bold;"><img src="image/edit.png" height="25" width="25" ></a> {% endcomment %}
+							</div>
+							<div>
+								<img src="{{data.proimg.url}}" width="41px" height="41px">
+							</div>
+							<div class="p_nmdate">
+								<h4>{{data.name}}</h4>
+								<h5 style="color: #757575;">'.$time->time_ago($post_time).' &nbsp;|&nbsp; Deadline: '.$deadline.'</h5>
+							</div>
+						</div>
+						<div class="p_body">
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<p><label>Subject: </label></p>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>"{{data.subjects}}"</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Class: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>{{data.cls}}</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Medium: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>"{{data.medium}}"</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Salary: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>"{{data.salary}}"</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Location: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>"{{data.location}}"</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Institute </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>"{{data.institute}}"</span>
+					  			</div>
+					  		</div>
+						</div>
+					</div>
+
+					
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- footer -->
+	<div>
+	<!--
+		include 'inc/footer.inc.php';
+	-->
+	</div>
+
+	
+
+
+
+
+</div>
+ <!-- homemenu tab script -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="{% static 'js/homemenu.js' %} "></script>
+</body>
+</html>
+{% endblock %}

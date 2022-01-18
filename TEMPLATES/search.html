@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="css/footer.css" rel="stylesheet" type="text/css" media="all" />
+	
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="css/homemenu.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+</head>
+<body class="body1">
+<div>
+	<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<!--
+					include 'inc/banner.inc.php';
+				-->
+
+			</div>
+		</header>
+		<div class="topnav">
+			<div class="parent2">
+		  <div class="test1 bimage1"><a href=""><img src="image/tech.png" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="image/eventmgt.png" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="image/photography.png" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="image/teaching.png" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+		</div>
+			<a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
+			<a class="active navlink" href="search.php">Search Tutor</a>
+			<a class=" navlink" href="postform.php">Post</a>';
+				
+			<div style="float: right;" >
+				<table>
+					<tr>
+						<td>
+							<a class="navlink" href="notification.php">Notification'.1.'</a>
+						</td>
+								<td>
+							<a class="navlink" href="profile.php?uid='.$user.'">'user name'</a>
+						</td>
+						<td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td><td>
+							<a class="navlink" href="login.php">Login</a>
+						</td>
+						<td>
+							<a class="navlink" href="registration.php">Register</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- newsfeed -->
+	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedleftsearch">
+			<div class="postbox">
+			<h3>Search Tutor</h3>
+			<div class="signup_error_msg">
+				
+			</div>';
+				
+			  	<form method="post">
+			  		<div class="itemrow">
+			  			<div style="width: 25%; float: left;">
+			  				<label>Subject: </label>
+			  			</div>
+			  			<div style="width: 75%; float: left;">
+			  			</div>
+			  		</div>
+			  	
+				
+					<div class="itemrow">
+						<div style="width: 25%; float: left;">
+							<label>Class: </label>
+						</div>
+						<div style="width: 75%; float: left;">
+						</div>
+						
+					</div>
+				  	<div class="itemrow">
+				  			<div style="width: 25%; float: left;">
+				  				<label>Medium: </label>
+				  			</div>
+				  			<div style="width: 75%; float: left;">
+						</div>
+					</div>
+					<div class="itemrow">
+				  			<div style="width: 25%; float: left;">
+				  				<label>Salary Range: </label>
+				  			</div>
+							<div style="width: 75%; float: left;">
+								<select name="sal_range" style="width: 180px;">
+							      <option value="">''</option>';  ?>
+								  <option value="None">None</option>
+								  <option value="1000-2000">1000-2000</option>
+								  <option value="2000-5000">2000-5000</option>
+								  <option value="5000-10000">5000-10000</option>
+								  <option value="10000-15000">10000-15000</option>
+								  <option value="15000-25000">15000-25000</option>
+								</select>
+							</div>
+						</div>
+				  	<div class="itemrow">
+				  			<div style="width: 25%; float: left;">
+				  				<label>Location: </label>
+				  			</div>
+				  			<div style="width: 75%; float: left;" >
+				  				<input type="text" style="width: 174px;" name="location" value="" placeholder="">'; ?>
+				  			</div>
+				  		</div>
+					<div class="itemrow">
+				  			<div style="width: 25%; float: left;">
+				  				<label>University: </label>
+				  			</div>
+							<div style="width: 75%; float: left;">
+								<select name="p_university" style="width: 180px;">
+							  <option value="None">None</option>
+							  <option value="Kerala University">Kerala University</option>
+							  <option value="Kochin University">Kochin University</option>
+							  <option value="Abdulkalam Univesity">Abdul kalam Univesity</option>
+							 </select>
+							</div>
+						</div>
+					<input type="submit" name="submit" class="sub_button" value="Search"/></br></br>
+				</form>
+			</div>
+		</div>
+		<div class="nfeedrightsearch">
+						<div class="nfbody">
+						<div class="p_body">
+							<div class="itemrow" style="text-align: center;">
+					  				<p><label>Please Select Search Item</label></p>
+					  		</div>
+						</div>
+					</div>
+						<div class="nfbody">
+						<div class="p_body">
+							<div class="itemrow" style="text-align: center;">
+					  				<p><label> Tutor Found </label></p>
+					  		</div>
+						</div>
+					</div>
+							<div class="nfbody">
+							<div class="p_head">
+							<div style="float: right;">
+									<input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;" name="" value="Selected" />
+								<form action="confirmteacher.php?confirm='.$tutor_id.'" method="post">
+									<input type="submit" class="sub_button" style="margin: 0px;" name="post_apply" value="Select" />
+								</form>
+							</div>
+							<div>
+								<img src="image/profilepic/'.$pro_pic_db.'" width="41px" height="41px">
+							</div>
+							<div class="p_nmdate">
+								<h4>user name</h4>
+								<h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'">Active '.$time->time_ago($last_login).'</a></h5>
+							</div>
+						</div>
+						<div class="p_body">
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<p><label>Teaches: </label></p>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$sub.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Class: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$class.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Medium: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$medium.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Salary: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$salary.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>Area: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$location.'</span>
+					  			</div>
+					  		</div>
+							<div class="itemrow">
+					  			<div class="itemrowdiv1">
+					  				<label>University: </label>
+					  			</div>
+					  			<div class="itemrowdiv2">
+					  				<span>'.$p_university.'</span>
+					  			</div>
+					  		</div>
+						</div>
+					</div>';
+
+					}
+				}
+
+				}
+			?>
+		</div>
+	</div>
+	<!-- footer -->
+
+</div>
+
+<!-- main jquery script -->
+<script  src="js/jquery-3.2.1.min.js"></script>
+
+<!-- homemenu tab script -->
+<script  src="js/homemenu.js"></script>
+
+<!-- topnavfixed script -->
+<script  src="js/topnavfixed.js"></script>
+
+<!-- topnavfixed script -->
+<script  src="js/nfeedleftsearchfixed.js"></script>
+
+
+
+</body>
+</html>
