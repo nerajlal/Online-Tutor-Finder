@@ -21,7 +21,6 @@
     align:center;
     
   }
-  th, td {
     border: 1px solid black;
    text-align:center;
     padding: 0px;
@@ -38,7 +37,8 @@
     <li><span><span><a href="index.php">Home</a></span></span></li>
     <li><span><span><a href="user.php">User</a></span></span></li>
     <li><span><span><a href="product.php">Conform</a></span></span></li>
-      <li class="active"><span><span>Delete tutor</span></span></li>
+    <li><span><span><a href="product.php">Delete tutor</a></span></span></li>
+      <li class="active"><span><span>Delete student</span></span></li>
       <li><span><span><a href="product.php">Action</a></span></span></li>
     </ul>
   </div></div>
@@ -51,7 +51,7 @@
         
         </div>
        
-        {% for d in data %}
+        {% for d in sdata %}
        <form action="" method="post">
        {% comment %} <label for="fname">Tutor id</label><br>
        <input type="number" id="t_id" name="t_id"><br>
@@ -83,10 +83,10 @@
                         {% comment %} <input type="submit" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Deadline Over" /> {% endcomment %}
                           {% comment %} <input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;cursor: default;" name="" value="Already Applied" /> {% endcomment %}
                           <form  method="post">{% csrf_token %}
-                      <input type="submit" class="sub_button" style="margin: 0px;" name="" value="Delete" formaction="/ADMIN/userdelete/{{d.pk}}/"/>
+                      <input type="submit" class="sub_button" style="margin: 0px;" name="" value="Delete" formaction="/ADMIN/studelete/{{d.pk}}/"/>
                     </form></div>
                   <div>
-                    <img src="{{d.tutorimg.url}}" width="100px" height="100px">
+                    <img src="{{d.proimg.url}}" width="100px" height="100px">
                   </div>
                   <div class="p_nmdate">
                     <h4>{{d.name}}</h4>
@@ -146,11 +146,11 @@
                     </div><br>
                   <div class="itemrow">
                       <div class="itemrowdiv1">
-                        <label>Certificates </label>
+                        {% comment %} <label>Certificates </label> {% endcomment %}
                       </div>
                       <div>
-                        <img src="{{d.certificate1.url}}" width="60px" height="60px">
-                        <img src="{{d.certificate2.url}}" width="60px" height="60px">
+                        {% comment %} <img src="{{d.certificate1.url}}" width="60px" height="60px">
+                        <img src="{{d.certificate2.url}}" width="60px" height="60px"> {% endcomment %}
                       </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from MAIN.models import ForApproval, Studentdata, Tutordata
+from MAIN.models import ForApproval, Studentdata, Tutordata, Users
 
 # Create your views here.
 def admlogin(request):
@@ -57,15 +57,44 @@ def Deleteuser(request):
         
         return render(request,'admin/removeorder.html',con)
 
+def Deletestudent(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        studdata=Studentdata.objects.all()
+        con={
+            'sdata':studdata
+             }
+            #  http://127.0.0.1:8000/ADMIN/Deletestudent/
+        
+        return render(request,'admin/removestudent.html',con)
+
 def userdelete(request,pk):
      if request.session.has_key('email'):
         email = request.session['email']
         # obj = Studentdata.objects.filter(pk=pk)
-        obj1= Studentdata.objects.get(pk=pk)
+      
        
-        obj5 = Tutordata.objects.filter(pk=pk)
+        obj5 = Tutordata.objects.get(pk=pk)
+        mail=obj5.email
+        obj1= Users.objects.get(email=mail)
         obj5.delete()
+        obj1.delete()
         return redirect('/ADMIN/Deleteuser/')
+
+
+def studelete(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        # obj = Studentdata.objects.filter(pk=pk)
+      
+       
+        obj5 = Studentdata.objects.get(pk=pk)
+        mail=obj5.email
+        obj1= Users.objects.get(email=mail)
+        obj5.delete()
+        obj1.delete()
+        return redirect('/ADMIN/Deletestudent/')
+
 
 
     
