@@ -25,7 +25,7 @@ class Tutioninfo(models.Model):
     location=models.CharField(max_length=200,null=True)
 
 class Studentdata(models.Model):
-    proimg=models.ImageField(upload_to="STATIC\images")
+    proimg=models.ImageField(upload_to="STATIC\images",null=True)
     name=models.CharField(max_length=200,null=True)
     email=models.CharField(max_length=200,null=True)
     phone=models.IntegerField()
@@ -33,6 +33,7 @@ class Studentdata(models.Model):
     gender=models.CharField(max_length=10,null=True,choices=gender_choices)
     address=models.CharField(max_length=500,null=True)
     institute=models.CharField(max_length=200,null=True)
+    deadline=models.CharField(max_length=10,null=True)
 
     medium=models.CharField(max_length=200,null=True) 
     subjects=models.CharField(max_length=200,null=True)
@@ -44,6 +45,7 @@ class Studentdata(models.Model):
 class AppliedList(models.Model):
     student=models.CharField(max_length=200,null=True) 
     appliedby=models.CharField(max_length=200,null=True)
+    appliedname=models.CharField(max_length=200,null=True)
 
 class ForApproval(models.Model):
     name=models.CharField(max_length=200,null=True)

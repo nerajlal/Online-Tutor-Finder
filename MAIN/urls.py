@@ -25,6 +25,7 @@ urlpatterns = [
           path('Approveuser', views.Approveuser, name="Approveuser"),
            path('approved/<int:pk>/', views.approved, name="approved"),
       #  path('Deleteuser', views.Deleteuser, name="Deleteuser")
+       path('disapprove/<int:pk>/', views.disapprove, name="disapprove"),
 
 
 ]

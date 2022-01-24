@@ -6,8 +6,8 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<link href="{% static 'css/footer.css" rel="stylesheet' %}" type="text/css" media="all" />
-	<link href="{% static 'css/reg.css" rel="stylesheet' %}" type="text/css" media="all" />
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'css/reg.css' %}"  rel="stylesheet" type="text/css" media="all" />
 	<!-- menu tab link -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -63,8 +63,8 @@
 	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
 		<div class="nfeedleft" style="background-color: unset;">
 			<div>
-		<div class="testbox" style="height: 280px;">
-  <h1>Login</h1>
+		<div class="testbox" style="height: 280px;"><BR><BR>
+  <h1>Login</h1><BR>
 
   <form action="/user_login" method="post">
 	{% csrf_token %}
@@ -80,8 +80,8 @@
   <p>Not registered yet?<a href="/register" style="font-weight: bold;">Register here</a>
   <br>
   <br>
-  <br>
-  <a href="/ADMIN/admlogin/" style="font-weight: bold;">Admin</a>
+ 
+  <a href="/ADMIN/admlogin/" style="font-weight: bold;">Admin</a><BR>
   </p>
   </div>
   </div>
@@ -95,7 +95,7 @@
 	</div>
 
 	
-	<div>
+	 <div>
 	<?php
 		include 'inc/footer.inc.php';
 	?>

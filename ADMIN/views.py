@@ -12,7 +12,6 @@ from MAIN.models import ForApproval, Studentdata, Tutordata, Users
 
 # Create your views here.
 def admlogin(request):
-    createAdmin()
     return render(request,'admin/Login.html')
 
 def createAdmin():

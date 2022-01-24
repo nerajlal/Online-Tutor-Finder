@@ -83,6 +83,7 @@
                           {% comment %} <input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;cursor: default;" name="" value="Already Applied" /> {% endcomment %}
                           <form  method="post">{% csrf_token %}
                       <input type="submit" class="sub_button" style="margin: 0px;" name="" value="Approve" formaction="/approved/{{d.pk}}/"/>
+                      <input type="submit" class="sub_button" style="margin: 0px;" name="" value="Delete" formaction="/disapprove/{{d.pk}}/"/>
                     </form></div>
                   <div>
                     <img src="{{d.tutorimg.url}}" width="100px" height="100px">

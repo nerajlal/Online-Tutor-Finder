@@ -20,11 +20,35 @@ def index(request):
     return render(request,"index1.html",con)
 
 def index1(request):
-    studdata=Studentdata.objects.all()
-    con={
-            'data':studdata
-        }
-    return render(request,"index.html",con)
+    if request.session.has_key('email'):
+        email = request.session['email']
+        studdata=Studentdata.objects.all()
+        ad=AppliedList.objects.filter(appliedby=email)
+        wm=[]
+        stu=[]
+        for q in studdata:
+            stu.append(q.email)
+
+        for i in ad:
+            wm.append(i.student)
+
+        count=[]
+        for i in studdata:
+            if i.email in wm:
+                count.append("Y")
+            else:
+                count.append("N")
+
+        mylist = zip(studdata, count)
+       
+       
+        con={
+                'data':studdata,
+                'addata':ad,
+                'c':mylist,
+                'wm':wm
+            }
+        return render(request,"index.html",con)
 
 
 def about(request):
@@ -132,7 +156,7 @@ def tutioninfo(request):
     return render(request,"updatetutioninfo.html")
 
 def tutiondata(request):
-    if request.session.has_key('email'):
+    
         g=request.POST.getlist('sub_list[]')
         stud= request.session['email']  
         medium=request.POST.getlist('medium_list[]')
@@ -201,7 +225,8 @@ def studentinput(request):
         address=request.POST.get('address') 
         phone=request.POST['phone']
         institute=request.POST['inst_nm'] 
-        info=Studentdata.objects.create(email=email,name=name,gender=gender,proimg=img,address=address,institute=institute,phone=phone)
+        deadline=request.POST['deadline'] 
+        info=Studentdata.objects.create(email=email,name=name,gender=gender,proimg=img,address=address,institute=institute,phone=phone,deadline=deadline)
         info.save()
         return redirect('/uptution')
 
@@ -230,9 +255,11 @@ def apply(request,pk):
     if request.session.has_key('email'):
         email = request.session['email']
         obj = Studentdata.objects.filter(pk=pk)
+        obj2=Tutordata.objects.get(email=email)
         obj1 = Studentdata.objects.get(pk=pk)
         mail=obj1.email
-        apply = AppliedList.objects.create(student=mail,appliedby=email) 
+        apname=obj2.name
+        apply = AppliedList.objects.create(student=mail,appliedby=email,appliedname=apname) 
         apply.save()
         return redirect('/index1')
     
@@ -308,5 +335,13 @@ def approved(request,pk):
         obj5 = ForApproval.objects.filter(pk=pk)
         obj5.delete()
         return redirect('/Approveuser')
+def disapprove(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        # obj = Studentdata.objects.filter(pk=pk)
+        obj5 = ForApproval.objects.filter(pk=pk)
+        obj5.delete()
+        return redirect('/Approveuser')
+
 
 
