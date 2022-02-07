@@ -21,9 +21,8 @@
 
 			<div class="header-cont">
 
-				<!--
-					include 'inc/banner.inc.php';
-				-->
+				<h1><a href="index.php">Educare</span></a></h1>
+				<h3><a href="#">Hotline: +91 8590208470</a></h3>
 
 			</div>
 		</header>
@@ -31,30 +30,28 @@
 		</div>
 		<div class="topnav">
 			<div class="parent2">
-		  <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  {% comment %} <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
 		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
 		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
 		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div> {% endcomment %}
 		</div>
-			<a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
+			{% comment %} <a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a> {% endcomment %}
 			<div style="float: right;" >
 				<table>
-					<tr>
+					<tr><td>
+						<a class="navlink" href="/formView">Posts</a>
+					</td>
 						<td>
-							<a class="active navlink" href="notification.php">Notification'.1.'</a>
+							<a class="active navlink" href="">Notification'.1.'</a>
 						</td>
 								<td>
-							<a class="navlink" href="profile.php?uid='.$user.'">'user name'</a>
+							<a class="navlink" href="/profile">{{data.name}}</a>
 						</td>
 						<td>
 							<a class="navlink" href="logout.php">Logout</a>
-						</td>'<td>
-							<a class="navlink" href="login.php">Login</a>
 						</td>
-						<td>
-							<a class="navlink" href="registration.php">Register</a>
-						</td>
+						
 					</tr>
 				</table>
 			</div>
@@ -77,21 +74,21 @@
 								<div style="float: right;">
 										
 								</div>
-								<div>{% if applied == None%}
-									<h5>No Notification Found! {{applied}}</h5>
+								<div>{% if q == "YES" %}
+									<h5>No Notification Found!</h5>
 									{% comment %} <img src="image/profilepic/'.$pro_pic_db.'" width="41px" height="41px"> {% endcomment %}
 								</div>{% else %}{% for ap in applied%}
 								<div class="p_nmdate">
 									<h4><a href="" style="color: #087E0D;">{{ap.appliedname}},{{ap.appliedby}}</a> <span style="color: #626262; font-weight: 100;"></span></h4>
 									<h5 style="color: #757575;"><a class="c_ptime" >Send you a request</a></h5>
-									<form action="" method="post">
+									<form action="/viewteacher/{{ap.pk}}/" method="post"> {% csrf_token %} 
 										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="View Contact" />
 									</form><form action="chat/data2.php?app_tut='.$post_by_id.'" method="post">
 									<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Chat" />
-									</form><BR><BR>
-								</div>
-							</div><hr>
-						</div>{% endfor %}{% endif %}
+									</form>
+								</div><hr>{% endfor %}
+							</div>
+						</div>{% endif %}
 								{% comment %} <div class="nfbody">
 								<div class="p_head">
 								<div style="float: right;">';

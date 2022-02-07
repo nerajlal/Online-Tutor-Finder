@@ -41,12 +41,15 @@
 			<a class="active navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
 			<div style="float: right;" >
 				<table>
-					<tr>
+					<tr><td>
+						<a class="active navlink" href="notification.php">Posts</a>
+					</td>
 						<td>
-							<a class="navlink" href="notification.php">Notification."1"</a>
+							<a class="navlink" href="/notification">Notification."1"</a>
 						</td>
-								<td>
-							<a class="navlink" href="profile.php?uid='.$user.'">user name</a>
+
+								<td>{% for p in data %}
+							<a class="navlink" href="/profile">{{p.name}}</a>{% endfor %}
 						</td>
 						<td>
                             <a class="navlink" href="/profile">Profile</a>

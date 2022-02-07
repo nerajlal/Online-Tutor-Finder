@@ -94,3 +94,9 @@ class Tutordata(models.Model):
     certificate2=models.ImageField(upload_to="STATIC\images")
 
 
+class ConfirmedList(models.Model):
+    teacher=models.CharField(max_length=200,null=True) 
+    appliedby=models.CharField(max_length=200,null=True)
+    appliedname=models.CharField(max_length=200,null=True)
+
+

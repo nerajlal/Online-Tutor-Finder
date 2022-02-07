@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from .models import Studentdata, Users,AppliedList,ForApproval,Tutordata
+from .models import ConfirmedList, Studentdata, Users,AppliedList,ForApproval,Tutordata
 from .models import Tutioninfo
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User, auth
@@ -125,7 +125,7 @@ def user_login(request):
                         
                 return redirect("/index1")
             else:
-                return redirect("/notification")
+                return redirect("/profile")
         else:
             return HttpResponse("Your username and password didn't match.")
 
@@ -243,10 +243,18 @@ def uptution(request):
 def notification(request):
     if request.session.has_key('email'):
         email = request.session['email']
+        dta=Users.objects.get( email = email)
         obj = AppliedList.objects.filter(student=email)
+        c=str(obj)
+        if c == "<QuerySet []>":
+            q="YES"
+        else:
+            q="NO"
         con={
+            "data":dta,
 
-            "applied":obj
+            "applied":obj,
+            "q":q
         }
         return render(request,"notification.html",con)
 
@@ -268,9 +276,10 @@ def profile(request):
         email = request.session['email']
         obj=Studentdata.objects.filter(email=email)
         obj1=Studentdata.objects.get(email=email)
-        con={
-            "data":obj1
 
+        con={
+            "data":obj1,
+            
         }
         return render(request,'profile.html',con)
 
@@ -343,5 +352,85 @@ def disapprove(request,pk):
         obj5.delete()
         return redirect('/Approveuser')
 
+def editstudent(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        dta=Users.objects.get( email = email)
+        con={
+            'data':dta
+        }
+
+        return render(request,'editstudent.html',con)
+        
+        
+def studentedit(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        g=request.POST.getlist('sub_list[]')
+        stud= request.session['email']  
+        medium=request.POST.getlist('medium_list[]')
+        subject=request.POST.getlist('sub_list[]')
+        cls=request.POST.getlist('class_list[]')
+        sal=request.POST['sal_range']
+        loc=request.POST['location']
+        separator = ", "
+        lisub=separator.join(map(str, subject))
+        licls=separator.join(map(str, cls))
+        limed=separator.join(map(str, medium))
+        # lisub = str(subject)[1:-1]
+        # info=Tutioninfo.objects.create(email=stud,medium=medium ,subjects=subject,cls=cls,salary=sal,location=loc)
+        # info.save()
+        email = request.session['email']
+        Studentdata.objects.filter( email = email).update(medium=limed ,subjects=lisub,cls=licls,salary=sal,location=loc)
+        return redirect('/profile')
+
+def personalstuddata(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        dta=Users.objects.get( email = email)
+        con={
+            'data':dta
+        }
+        return render(request,"updatepersonaldata.html",con)
+        
+
+def updatepersonal(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        dta=Users.objects.get( email = email)
+        gender=dta.gender
+        name=dta.name
+        address=request.POST.get('address') 
+        phone=request.POST['phone']
+        institute=request.POST['inst_nm'] 
+        deadline=request.POST['deadline'] 
+        Studentdata.objects.filter( email = email).update(email=email,name=name,gender=gender,address=address,institute=institute,phone=phone,deadline=deadline)
+       
+        return redirect('/profile')
+
+def viewteacher(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        obj1= AppliedList.objects.get(pk=pk)
+        obj3= Studentdata.objects.get(email=email)
+        mail=obj1.appliedby
+        obj2= Tutordata.objects.get(email=mail)
+        con={
+            "data":obj2,
+            "dta":obj3
+        }
+        return render(request,'viewteacher.html',con)
+
+def confirmteacher(request,pk):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        obj = Tutordata.objects.filter(pk=pk)
+        obj2=Studentdata.objects.get(email=email)
+        obj1 = Tutordata.objects.get(pk=pk)
+        mail=obj1.email
+        apname=obj2.name
+        apply = ConfirmedList.objects.create(teacher=mail,appliedby=email,appliedname=apname) 
+        apply.save()
+        return redirect('/notification')
 
 

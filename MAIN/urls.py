@@ -26,6 +26,13 @@ urlpatterns = [
            path('approved/<int:pk>/', views.approved, name="approved"),
       #  path('Deleteuser', views.Deleteuser, name="Deleteuser")
        path('disapprove/<int:pk>/', views.disapprove, name="disapprove"),
+         path('studentedit', views.studentedit, name="studentedit"),
+          path('editstudent', views.editstudent, name="editstudent"),
+            path('personalstuddata', views.personalstuddata, name="personalstuddata"),
+            path('updatepersonal', views.updatepersonal, name="updatepersonal"),
+              path('viewteacher/<int:pk>/', views.viewteacher, name="viewteacher"),
+               path('confirmteacher/<int:pk>/', views.confirmteacher, name="confirmteacher"),
+
 
 
 ]

@@ -93,6 +93,8 @@ def studelete(request,pk):
         obj5.delete()
         obj1.delete()
         return redirect('/ADMIN/Deletestudent/')
+    
+
 
 
 

@@ -45,10 +45,10 @@
 						<a class="navlink" href="/formView">Posts</a>
 					</td>
 						<td>
-							<a class="navlink" href="/notification">Notification'.1.'</a>
+							<a class="navlink active" href="/notification">Notification'.1.'</a>
 						</td>
 								 <td>
-							<a class="active navlink" href="">{{data.name}}</a>
+							<a class="navlink" href="">{{dta.name}}</a>
 						</td> 
 						<td>
 							<a class="navlink" href="logout.php">Logout</a>
@@ -93,13 +93,13 @@
 								{% comment %} <a href="editpost.php?pid='.$post_id.'" style="float: right; color: #aaa; font-weight: bold;"><img src="image/edit.png" height="25" width="25" ></a> {% endcomment %}
 							</div>
 							<div>
-								<img src="{{data.proimg.url}}" width="41px" height="41px">
+								<img src="{{data.tutorimg.url}}" width="100px" height="100px">
 							</div>
 							<div class="p_nmdate">
-								<h4>{{data.name}}</h4>
-								<h5 style="color: #757575;">{{data.date}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline: '{{data.deadline}}'</h5>
+								<BR><h4>{{data.name}}</h4>
+								{% comment %} <h5 style="color: #757575;">{{data.date}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline: '{{data.deadline}}'</h5> {% endcomment %}
 							</div>
-						</div>
+						</div><br><br><br>
 						<div class="p_body">
 							<div class="itemrow">
 					  			<div class="itemrowdiv1">
@@ -155,10 +155,10 @@
 									<label></label>
 								</div>
 								<div class="itemrowdiv2">
-									<span><form action="/editstudent" method="post"> {% csrf_token %}
-										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Edit Acadamic Data" />
-									</form><form action="/personalstuddata" method="post"> {% csrf_token %}
-										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Edit Personal details" />
+									<span><form action="/confirmteacher" method="post"> {% csrf_token %}
+										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Delete" />
+									</form><form action="/confirmteacher/{{data.pk}}/" method="post"> {% csrf_token %}
+										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Confirm Teacher" />
 									</form>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</div>
 							</div>
