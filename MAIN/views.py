@@ -244,19 +244,42 @@ def notification(request):
     if request.session.has_key('email'):
         email = request.session['email']
         dta=Users.objects.get( email = email)
-        obj = AppliedList.objects.filter(student=email)
-        c=str(obj)
-        if c == "<QuerySet []>":
-            q="YES"
-        else:
-            q="NO"
-        con={
-            "data":dta,
+        g=dta.account
+        if g=="student":
+            obj = AppliedList.objects.filter(student=email)
+            c=str(obj)
+            
+            if c == "<QuerySet []>":
+                q="YES"
+            else:
+                q="NO"
+            con={
+                "data":dta,
 
-            "applied":obj,
-            "q":q
-        }
-        return render(request,"notification.html",con)
+                "applied":obj,
+                "q":q
+            }
+            return render(request,"notification.html",con)
+
+        else:
+            obj = ConfirmedList.objects.filter(teacher=email)
+            c=str(obj)
+            
+            if c == "<QuerySet []>":
+                q="YES"
+            else:
+                q="NO"
+            con={
+                "data":dta,
+
+                "applied":obj,
+                "q":q
+            }
+            return render(request,"teachernotification.html",con)
+
+
+
+
 
 
 def apply(request,pk):
@@ -274,13 +297,24 @@ def apply(request,pk):
 def profile(request):
      if request.session.has_key('email'):
         email = request.session['email']
-        obj=Studentdata.objects.filter(email=email)
-        obj1=Studentdata.objects.get(email=email)
+        dta=Users.objects.get( email = email)
+        g=dta.account
+        if g=="student":
+            obj=Studentdata.objects.filter(email=email)
+            obj1=Studentdata.objects.get(email=email)
 
-        con={
-            "data":obj1,
-            
-        }
+            con={
+                "data":obj1,
+                "g":g
+            }
+        else:
+            obj1=Tutordata.objects.get(email=email)
+            con={
+                "data":obj1,
+                "g":g
+                
+            }
+
         return render(request,'profile.html',con)
 
 
@@ -433,4 +467,74 @@ def confirmteacher(request,pk):
         apply.save()
         return redirect('/notification')
 
+
+
+def personaltutordata(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        dta=Tutordata.objects.get( email = email)
+        con={
+            'data':dta
+        }
+        return render(request,'edittutor.html',con)
+
+def editteacher(request):
+    if request.session.has_key('email'):
+        mail = request.session['email']
+        dta=Users.objects.get( email = mail)
+        dta2=Tutordata.objects.get( email = mail)
+        c1=dta2.certificate1
+        c2=dta2.certificate2
+        c3=dta2.tutorimg
+        if request.method == 'POST':
+            tutimg=request.FILES.get('profilepic') 
+            address=request.POST['address'] 
+            email=mail
+            # phone=request.POST['phone']
+            institute=request.POST['inst_nm'] 
+            medium=request.POST['medium']
+            subject=request.POST['Subjects']
+            cls=request.POST['class']
+            sal=request.POST['sal_range']
+            loc=request.POST['location']
+            cert1=request.FILES.get('cert1')
+            cert2=request.FILES.get('cert2')
+            # apply =ForApproval.objects.create(email="hgv",phone="234",medium=medium ,subjects=subject,cls=cls,salary=sal,location=loc, tutorimg=tutimg, certificate1=cert1,certificate2=cert2,address=address,institute=institute) 
+            # apply.save()
+            # apply=ForApproval.objects.filter( email = email).update(medium=medium ,subjects=subject,cls=cls,salary=sal,location=loc, tutorimg=tutimg, certificate1=cert1,certificate2=cert2,address=address,institute=institute)
+            # apply.save()
+            apply=Tutordata.objects.get( email = email)
+            apply.medium=medium
+            apply.subjects=subject
+            apply.cls=cls
+            apply.salary=sal
+            apply.location=loc
+            apply.address=address
+           
+           
+       
+       
+            if cert1==None:
+                apply.certificate1=c1
+            else:
+                 apply.certificate1=cert1
+
+            if cert2==None:
+                apply.certificate2=c2
+            else:
+                 apply.certificate2=cert2
+
+            if tutimg==None:
+                apply.tutorimg=c3
+            else:
+                 apply.tutorimg=tutimg
+
+            apply.save()
+            return redirect('/profile')
+
+
+
+
+
+       
 

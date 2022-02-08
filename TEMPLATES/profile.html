@@ -92,14 +92,24 @@
 							<div>
 								{% comment %} <a href="editpost.php?pid='.$post_id.'" style="float: right; color: #aaa; font-weight: bold;"><img src="image/edit.png" height="25" width="25" ></a> {% endcomment %}
 							</div>
+							{% if g == "student" %}
+							
 							<div>
 								<img src="{{data.proimg.url}}" width="41px" height="41px">
 							</div>
-							<div class="p_nmdate">
-								<h4>{{data.name}}</h4>
-								<h5 style="color: #757575;">{{data.date}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline: '{{data.deadline}}'</h5>
+							{% else %}
+							<div>
+								<img src="{{data.tutorimg.url}}" width="41px" height="41px">
 							</div>
-						</div>
+							
+							
+							
+							{% endif %}
+							<div class="p_nmdate">
+								<h4>{{data.name}}</h4> {% if g == "student" %}
+								<h5 style="color: #757575;">{{data.date}} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline: '{{data.deadline}}'</h5>{% endif %}
+							</div>
+						</div><BR><BR>
 						<div class="p_body">
 							<div class="itemrow">
 					  			<div class="itemrowdiv1">
@@ -149,6 +159,20 @@
 					  				<span>&nbsp;&nbsp;&nbsp;{{data.institute}}</span>
 					  			</div>
 					  		</div>
+							  {% if g == "teacher" %}
+
+							  <div class="itemrow">
+								<div class="itemrowdiv1">
+									<label>Certificates </label>
+								</div>
+								<div class="itemrowdiv2">
+									<span>&nbsp;&nbsp;&nbsp;<div>
+										<img src="{{data.certificate1.url}}" width="100px" height="100px">
+										<img src="{{data.certificate2.url}}" width="100px" height="100px">
+									</div></span>
+								</div>
+							</div>{% endif %}{% if g == "student" %}
+
 							  <div class="itemrow">
 								<div class="itemrowdiv1">
 									
@@ -161,7 +185,17 @@
 										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Edit Personal details" />
 									</form>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</div>
-							</div>
+							</div>{% else %}
+							<div class="itemrow">
+								<div class="itemrowdiv1">
+									
+									<label></label>
+								</div>
+								<div class="itemrowdiv2">
+									<span><form action="/personaltutordata" method="post"> {% csrf_token %}
+										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Edit" />
+									</form>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								</div>{% endif %}
 							
 						</div>
 					</div>
