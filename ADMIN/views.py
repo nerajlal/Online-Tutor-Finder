@@ -26,7 +26,7 @@ def adm(request):
     request.session['email'] = email
     user = authenticate(username=email, password=password)
     if user is not None:
-        return redirect("/Approveuser")
+        return redirect("/ADMIN/Approveuser")
     else:
         return render(request,'admin/login.html')
 def admindex(request):
@@ -94,10 +94,78 @@ def studelete(request,pk):
         obj1.delete()
         return redirect('/ADMIN/Deletestudent/')
     
+def Approveuser(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        tutdata=ForApproval.objects.all()
+        con={
+            'data':tutdata
+                }
+        
+        return render(request,'admin/order.html',con)
+
+def approved(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        # obj = Studentdata.objects.filter(pk=pk)
+        obj1= ForApproval.objects.get(pk=pk)
+        create=Tutordata.objects.create(name=obj1.name,email=obj1.email,medium=obj1.medium ,subjects=obj1.subjects,cls=obj1.cls,salary=obj1.salary,location=obj1.location, tutorimg=obj1.tutorimg, certificate1=obj1.certificate1,certificate2=obj1.certificate2,address=obj1.address,institute=obj1.institute, phone=obj1.phone,gender=obj1.gender,account=obj1.account) 
+        users = Users.objects.create(account=obj1.account,name=obj1.name, email=obj1.email, phone=obj1.phone, password = obj1.password,gender=obj1.gender)
+        create.save()
+        users.save()
+        obj5 = ForApproval.objects.filter(pk=pk)
+        obj5.delete()
+        return redirect('/ADMIN/Approveuser')
+def disapprove(request,pk):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        # obj = Studentdata.objects.filter(pk=pk)
+        obj5 = ForApproval.objects.filter(pk=pk)
+        obj5.delete()
+        return redirect('/ADMIN/Approveuser')
+def admaddtutor(request):
+    return render(request,'admin/admaddteacher.html')
+
+def tutoradd(request):
+     if request.session.has_key('email'):
+        email = request.session['email']
+        if request.method == 'POST':
+           
+            name = request.POST['name']
+            email = request.POST['email']
+            phone = request.POST['mobile']
+            gender=request.POST['gender']
+            password1 = request.POST['password']
+            t="teacher"
+            tutimg=request.FILES.get('profilepic') 
+            address=request.POST['address'] 
+            email=request.POST['email'] 
+            institute=request.POST['inst_nm'] 
+            medium=request.POST['medium']
+            subject=request.POST['Subjects']
+            cls=request.POST['class']
+            sal=request.POST['sal_range']
+            loc=request.POST['location']
+            cert1=request.FILES.get('cert1')
+            cert2=request.FILES.get('cert2')
+            apply=ForApproval.objects.get( email = email)
+            apply.medium=medium
+            apply.subjects=subject
+            apply.cls=cls
+            apply.salary=sal
+            apply.location=loc
+            apply.tutorimg=tutimg
+            apply.certificate1=cert1
+            apply.certificate2=cert2
+            apply.address=address
+            apply.institute=institute
+            apply.save()
+            users = Users.objects.create(account=t,name=name, email=email, phone=phone, password = password1)
+
+            users.save()
 
 
 
-
+        
     
- 
 

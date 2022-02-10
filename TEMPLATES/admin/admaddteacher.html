@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block content %}
+
+{% load static %}
+
+
+<html>
+<head>
+<title>Admin</title>
+{% comment %} <style media="all" type="text/css"> {% endcomment %}
+{% comment %}  @import "css/all.css";  {% endcomment %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all.css'%} ">
+</style>
+</head>
+<body>
+<div id="main">
+  <div id="header"> <a href="#" class="logo"><img src="{% static 'img/logo.gif'%}" width="101" height="29" alt="" /></a>
+    <ul id="top-navigation">
+      <li><span><span><a href="/adindex">Home</a></span></span></li>
+      <li><span><span><a href="/user">User</a></span></span></li>
+      <li><span><span><a href="/bus">Bus</a></span></span></li>
+      <li class="active"><span><span>Add</span></span></li>
+    </ul>
+  </div>
+  <div id="middle">
+    <div id="center-column">
+      <div class="top-bar"> <a href="#" class="button">ADD NEW </a>
+        <h1>Contents</h1>
+        <div class="breadcrumbs"><a href="#">Product</a> / <a href="#">Contents</a></div>
+        
+      </div>
+      <br />
+      
+      <div class="table"> <img src="{% static 'img/bg-th-left.gif'%}" width="8" height="7" alt="" class="left" /> <img src="{% static 'img/bg-th-right.gif'%}" width="7" height="7" alt="" class="right" />
+      </div>
+      <H1>Add New Tutor </H1>
+      <form action="/add" method="post">
+        {% csrf_token %}
+        <label for="fname">Profile Picture</label><br>
+        <input type="file" name="profile" value="Choose"/><br><br>
+
+        <label for="fname">Name</label><br>
+        <input type="text" id="name" name="t_id"><br>
+        
+        <label for="fname">E mail</label><br>
+        <input type="text" id="inst_name" name="inst_name"><br>
+        <label for="fname">Phone Number</label><br>
+        <input type="number" id="inst_name" name="inst_name"><br>
+        <label for="fname">Institute name</label><br>
+        <input type="text" id="inst_name" name="inst_name"><br>
+        <label for="fname">Address</label><br>
+        <input type="text" id="inst_name" name="inst_name"><br>
+        <label for="fname">Prefer Subject</label><br>
+        <input type="text" id="prefer_sub" name="prefer_sub"><br>
+        <label for="fname">Class</label><br>
+        <input type="text" id="clasd" name="class"><br>
+        <label for="fname">Medium</label><br>
+        <input type="text" id="medium" name="medium"><br>
+        <label for="fname">Prefer Location</label><br>
+        <input type="text" id="prefer_location" name="prefer_location"><br>
+        <label for="fname">Prefer Salary</label><br>
+        <input type="number" id="salary" name="salary"><br><br>
+        <label for="fname">Certificates</label><br>
+        <input type="file" name="cert1" value="Choose"/><br>
+	    <input type="file" name="cert2" value="Choose"/><br><br>
+        
+       
+        <label for="fname">Password</label><br>
+        <input type="password" id="inst_name" name="inst_name"><br>
+        
+        <input type="submit" value="Submit">
+        
+        <br>
+        <br>
+      </form>  
+    
+     
+  </div>
+  <div id="footer"></div>
+</div>
+</body>
+</html>
+{% endblock %}

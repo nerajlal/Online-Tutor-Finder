@@ -12,8 +12,10 @@
   <div id="header"> <a href="#" class="logo"><img src="{% static 'img/logo.gif' %}" width="101" height="29" alt="" /></a>
     <ul id="top-navigation">
       <li class="active"><span><span>Home</span></span></li>
-      <li><span><span><a href="user.php">Users</a></span></span></li>
-      <li><span><span><a href="/approve">Conform</a></span></span></li>
+      {% comment %} <li><span><span><a href="user.php">Users</a></span></span></li> {% endcomment %}
+      <li><span><span><a href="/ADMIN/Approveuser/">Conform</a></span></span></li>
+      <li><span><span><a href="/ADMIN/Deleteuser/">Delete tutor</a></span></span></li>
+      <li><span><span><a href="/ADMIN/Deletestudent/">Delete student</a></span></span></li>
       <li><span><span><a href="product.php">Action</a></span></span></li>
     </ul>
   </div>

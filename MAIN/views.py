@@ -356,35 +356,7 @@ def tutordata(request):
 
         return redirect('/')
     
-def Approveuser(request):
-    if request.session.has_key('email'):
-        email = request.session['email']
-        tutdata=ForApproval.objects.all()
-        con={
-            'data':tutdata
-             }
-        
-        return render(request,'admin/order.html',con)
 
-def approved(request,pk):
-     if request.session.has_key('email'):
-        email = request.session['email']
-        # obj = Studentdata.objects.filter(pk=pk)
-        obj1= ForApproval.objects.get(pk=pk)
-        create=Tutordata.objects.create(name=obj1.name,email=obj1.email,medium=obj1.medium ,subjects=obj1.subjects,cls=obj1.cls,salary=obj1.salary,location=obj1.location, tutorimg=obj1.tutorimg, certificate1=obj1.certificate1,certificate2=obj1.certificate2,address=obj1.address,institute=obj1.institute, phone=obj1.phone,gender=obj1.gender,account=obj1.account) 
-        users = Users.objects.create(account=obj1.account,name=obj1.name, email=obj1.email, phone=obj1.phone, password = obj1.password,gender=obj1.gender)
-        create.save()
-        users.save()
-        obj5 = ForApproval.objects.filter(pk=pk)
-        obj5.delete()
-        return redirect('/Approveuser')
-def disapprove(request,pk):
-     if request.session.has_key('email'):
-        email = request.session['email']
-        # obj = Studentdata.objects.filter(pk=pk)
-        obj5 = ForApproval.objects.filter(pk=pk)
-        obj5.delete()
-        return redirect('/Approveuser')
 
 def editstudent(request):
     if request.session.has_key('email'):

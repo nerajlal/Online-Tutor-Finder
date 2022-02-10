@@ -8,5 +8,10 @@ urlpatterns = [
       path('Deletestudent/', views.Deletestudent, name="Deletestudent"),
      path('userdelete/<int:pk>/', views.userdelete, name="userdelete"),
       path('studelete/<int:pk>/', views.studelete, name="studelete"),
+       path('Approveuser/', views.Approveuser, name="Approveuser"),
+        path('approved/<int:pk>/', views.approved, name="approved"),
+      path('disapprove/<int:pk>/', views.disapprove, name="disapprove"),
+       path('admaddtutor/', views.admaddtutor, name="admaddtutor"),
+       
    
 ]
