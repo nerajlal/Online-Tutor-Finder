@@ -1,0 +1,155 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mn.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+  <script>
+    function play1() {
+      
+      /* Audio link for notification */
+      var mp3 = '<source src="notification.mp3" type="audio/mpeg">';
+      document.getElementById("sound").innerHTML =
+      '<audio autoplay="autoplay">' + mp3 + "</audio>";
+    }
+  </script>
+
+  <style>
+    input[type=text]{
+      width: 50%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 10%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    .button {
+      background-color: rgb(112, 112, 241); 
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {border-radius: 50%;}
+    .button:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    
+    </style>
+    
+
+</head>
+<body>
+  
+  
+    
+  <div class="container bootstrap snippets bootdeys">
+    <div class="col-md-7 col-xs-12 col-md-offset-2">
+      <!-- Panel Chat -->
+      <div class="panel" id="chat">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <i class="icon wb-chat-text" aria-hidden="true"></i> Chat
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="chats">
+            <div class="chat">
+              <div class="chat-avatar">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                  <i></i>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                  <p>
+                    Good morning, sir.
+                    <br>What can I do for you?
+                  </p>
+                  <time class="chat-time" datetime="2015-07-01T11:37">11:37:08 am</time>
+                </div>
+              </div>
+            </div>
+            <div class="chat chat-left">
+              <div class="chat-avatar">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="Edward Fletcher">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+                  <i></i>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                  <p>Well, I am just looking around.</p>
+                  <time class="chat-time" datetime="2015-07-01T11:39">11:39:57 am</time>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="chat">
+              <div class="chat-avatar">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                  <i></i>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                  <p>
+                    If necessary, please ask me.
+                  </p>
+                  <time class="chat-time" datetime="2015-07-01T11:40">11:40:19 am</time>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="panel-footer">
+          <form action="/CHAT/msg/" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Say something" name="msg">
+              <span class="input-group-btn">
+                <button class="button button5" onclick="play1();"  ><i class="fa fa-send-o" style="color:white"></i></button><div id="sound"></div>
+              </span>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Panel Chat -->
+    </div>
+    </div>
+  
+</body>
+</html>
+{% endblock %}

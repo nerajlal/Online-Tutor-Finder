@@ -39,7 +39,7 @@ def Approveuser(request):
         con={
             'data':tutdata
              }
-        
+
         return render(request,'admin/order.html',con)
 
 
@@ -85,8 +85,6 @@ def studelete(request,pk):
      if request.session.has_key('email'):
         email = request.session['email']
         # obj = Studentdata.objects.filter(pk=pk)
-      
-       
         obj5 = Studentdata.objects.get(pk=pk)
         mail=obj5.email
         obj1= Users.objects.get(email=mail)
@@ -101,7 +99,6 @@ def Approveuser(request):
         con={
             'data':tutdata
                 }
-        
         return render(request,'admin/order.html',con)
 
 def approved(request,pk):
@@ -116,6 +113,7 @@ def approved(request,pk):
         obj5 = ForApproval.objects.filter(pk=pk)
         obj5.delete()
         return redirect('/ADMIN/Approveuser')
+
 def disapprove(request,pk):
      if request.session.has_key('email'):
         email = request.session['email']
@@ -123,6 +121,7 @@ def disapprove(request,pk):
         obj5 = ForApproval.objects.filter(pk=pk)
         obj5.delete()
         return redirect('/ADMIN/Approveuser')
+
 def admaddtutor(request):
     return render(request,'admin/admaddteacher.html')
 
@@ -130,9 +129,8 @@ def tutoradd(request):
      if request.session.has_key('email'):
         email = request.session['email']
         if request.method == 'POST':
-           
             name = request.POST['name']
-            email = request.POST['email']
+            mail = request.POST['email']
             phone = request.POST['mobile']
             gender=request.POST['gender']
             password1 = request.POST['password']
@@ -148,22 +146,12 @@ def tutoradd(request):
             loc=request.POST['location']
             cert1=request.FILES.get('cert1')
             cert2=request.FILES.get('cert2')
-            apply=ForApproval.objects.get( email = email)
-            apply.medium=medium
-            apply.subjects=subject
-            apply.cls=cls
-            apply.salary=sal
-            apply.location=loc
-            apply.tutorimg=tutimg
-            apply.certificate1=cert1
-            apply.certificate2=cert2
-            apply.address=address
-            apply.institute=institute
+            apply=Tutordata.objects.create(medium=medium ,subjects=subject,cls=cls,salary=sal,location=loc, tutorimg=tutimg, certificate1=cert1,certificate2=cert2,address=address,institute=institute,account=t,name=name, email=mail, 
+                                            phone=phone,gender=gender)
             apply.save()
-            users = Users.objects.create(account=t,name=name, email=email, phone=phone, password = password1)
-
+            users = Users.objects.create(account=t,name=name, email=email, phone=phone,gender=gender, password = password1)
             users.save()
-
+            return redirect('/ADMIN/admaddtutor')
 
 
         

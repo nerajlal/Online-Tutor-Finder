@@ -83,7 +83,7 @@
 									<h5 style="color: #757575;"><a class="c_ptime" >Send you a request</a></h5>
 									<form action="/viewteacher/{{ap.pk}}/" method="post"> {% csrf_token %} 
 										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="View Contact" />
-									</form><form action="chat/data2.php?app_tut='.$post_by_id.'" method="post">
+									</form><form action="/CHAT/index/{{ap.pk}}/" method="post">  {% csrf_token %}
 									<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Chat" />
 									</form>
 								</div><hr>{% endfor %}

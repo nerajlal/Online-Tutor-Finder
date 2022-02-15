@@ -12,6 +12,7 @@ urlpatterns = [
         path('approved/<int:pk>/', views.approved, name="approved"),
       path('disapprove/<int:pk>/', views.disapprove, name="disapprove"),
        path('admaddtutor/', views.admaddtutor, name="admaddtutor"),
+        path('tutoradd/', views.tutoradd, name="tutoradd"),
        
    
 ]

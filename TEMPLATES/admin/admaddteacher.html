@@ -35,39 +35,46 @@
       <div class="table"> <img src="{% static 'img/bg-th-left.gif'%}" width="8" height="7" alt="" class="left" /> <img src="{% static 'img/bg-th-right.gif'%}" width="7" height="7" alt="" class="right" />
       </div>
       <H1>Add New Tutor </H1>
-      <form action="/add" method="post">
+      <form action="/ADMIN/tutoradd/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="fname">Profile Picture</label><br>
-        <input type="file" name="profile" value="Choose"/><br><br>
+        <input type="file" name="profilepic" value="Choose"/><br><br>
 
         <label for="fname">Name</label><br>
-        <input type="text" id="name" name="t_id"><br>
+        <input type="text" id="name" name="name"><br>
         
         <label for="fname">E mail</label><br>
-        <input type="text" id="inst_name" name="inst_name"><br>
+        <input type="text" id="inst_name" name="email"><br>
         <label for="fname">Phone Number</label><br>
-        <input type="number" id="inst_name" name="inst_name"><br>
+        <input type="number" id="inst_name" name="mobile"><br>
         <label for="fname">Institute name</label><br>
-        <input type="text" id="inst_name" name="inst_name"><br>
+        <input type="text" id="inst_name" name="inst_nm"><br>
         <label for="fname">Address</label><br>
-        <input type="text" id="inst_name" name="inst_name"><br>
+        <input type="text" id="inst_name" name="address"><br>
         <label for="fname">Prefer Subject</label><br>
-        <input type="text" id="prefer_sub" name="prefer_sub"><br>
+        <input type="text" id="prefer_sub" name="Subjects"><br>
         <label for="fname">Class</label><br>
-        <input type="text" id="clasd" name="class"><br>
+        <input type="text" id="class" name="class"><br>
         <label for="fname">Medium</label><br>
         <input type="text" id="medium" name="medium"><br>
         <label for="fname">Prefer Location</label><br>
-        <input type="text" id="prefer_location" name="prefer_location"><br>
+        <input type="text" id="prefer_location" name="location"><br>
         <label for="fname">Prefer Salary</label><br>
-        <input type="number" id="salary" name="salary"><br><br>
+        <input type="number" id="salary" name="sal_range"><br><br>
+        <div class="gender">
+          <input type="radio" value="male" id="male" name="gender" checked/>
+          <label for="male" class="radio" chec>Male</label>
+          <input type="radio" value="female" id="female" name="gender" />
+          <label for="female" class="radio">Female</label>
+         </div> <br><br>
+
         <label for="fname">Certificates</label><br>
         <input type="file" name="cert1" value="Choose"/><br>
 	    <input type="file" name="cert2" value="Choose"/><br><br>
         
        
         <label for="fname">Password</label><br>
-        <input type="password" id="inst_name" name="inst_name"><br>
+        <input type="password" id="inst_name" name="password"><br>
         
         <input type="submit" value="Submit">
         
