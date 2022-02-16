@@ -25,6 +25,7 @@ def index(request,pk):
             dta=Chat.objects.filter( sender = email,reciever = rec)
             dta2=Chat.objects.filter( sender = rec,reciever = email)
         else:
+            
             ch=AppliedList.objects.get(pk=r)
             rec=ch.appliedby
             dta=Chat.objects.filter( sender = email,reciever = rec)
