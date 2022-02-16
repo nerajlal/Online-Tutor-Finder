@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from CHAT.models import Chat
 from MAIN.models import *
 from playsound import playsound
+
+
 r=0
 def index(request,pk):
     if request.session.has_key('email'):
@@ -12,13 +14,77 @@ def index(request,pk):
         global r 
         r=p
 
-        return render(request,"chat/index.html")
+        
+        te=Users.objects.get( email = email)
+        tec=te.account
+       
+        if tec == "teacher":
+
+            ch=ConfirmedList.objects.get(pk=r)
+            rec=ch.appliedby
+            dta=Chat.objects.filter( sender = email,reciever = rec)
+            dta2=Chat.objects.filter( sender = rec,reciever = email)
+        else:
+            ch=AppliedList.objects.get(pk=r)
+            rec=ch.appliedby
+            dta=Chat.objects.filter( sender = email,reciever = rec)
+            dta2=Chat.objects.filter( sender = rec,reciever = email)
+
+       
+        
+
+
+
+        con={
+            'data':dta,
+            'data2':dta2,
+            
+        }
+
+        return render(request,"chat/index.html",con)
+
+
+
+
+
 
 def index2(request):
     if request.session.has_key('email'):
         email = request.session['email']
         global r 
-        return render(request,"chat/index.html")
+        ch=AppliedList.objects.get(pk=r)
+        rec=ch.appliedby
+        dta=Chat.objects.filter( sender = email,reciever = rec)
+        dta2=Chat.objects.filter( sender = rec,reciever = email)
+       
+        
+        con={
+            'data':dta,
+            'data2':dta2,
+            
+        }
+
+
+        return render(request,"chat/index.html",con)
+
+def index3(request):
+    if request.session.has_key('email'):
+        email = request.session['email']
+        global r 
+        ch=ConfirmedList.objects.get(pk=r)
+        rec=ch.appliedby
+        dta=Chat.objects.filter( sender = email,reciever = rec)
+        dta2=Chat.objects.filter( sender = rec,reciever = email)
+       
+        
+        con={
+            'data':dta,
+            'data2':dta2,
+            
+        }
+
+
+        return render(request,"chat/index.html",con)
 
 
 
@@ -30,14 +96,32 @@ def msg(request):
         email = request.session['email']
         global r
         i=r
-        ch=AppliedList.objects.get(pk=i)
-        rec=ch.appliedby
-      
-        if request.method == 'POST':
+        te=Users.objects.get( email = email)
+        tec=te.account
+       
+        if tec == "student":
+            ch=AppliedList.objects.get(pk=i)
+            rec=ch.appliedby
+            if request.method == 'POST':
               msg = request.POST['msg']
               sender=email
               ms=Chat.objects.create(sender=sender,reciever=rec,message=msg)
               return redirect('/CHAT/index2/')
+
+
+
+        else:
+
+            ch=ConfirmedList.objects.get(pk=i)
+            rec=ch.appliedby
+            if request.method == 'POST':
+                msg = request.POST['msg']
+                sender=email
+                ms=Chat.objects.create(sender=sender,reciever=rec,message=msg)
+                return redirect('/CHAT/index3/')
+
+      
+        
 
 
 
