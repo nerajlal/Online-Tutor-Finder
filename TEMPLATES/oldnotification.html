@@ -1,0 +1,138 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	
+</head>
+<body class="body1">
+<div>
+	<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<h1><a href="index.php">Educare</span></a></h1>
+				<h3><a href="#">Hotline: +91 8590208470</a></h3>
+
+			</div>
+		</header>
+		  
+		</div>
+		<div class="topnav">
+			<div class="parent2">
+		  {% comment %} <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div> {% endcomment %}
+		</div>
+			{% comment %} <a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a> {% endcomment %}
+			<div style="float: right;" >
+				<table>
+					<tr><td>
+						<a class="navlink" href="/formView">Posts</a>
+					</td>
+						<td>
+							<a class="active navlink" href="">Notifications</a>
+						</td>
+						<td>
+							<a class="navlink" href="/CHAT/chatNotification">Chat Notifications</a>
+						</td>
+								<td>
+							<a class="navlink" href="/profile">{{data.name}}</a>
+						</td>
+						<td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div><BR><BR>
+	<!-- newsfeed -->
+	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedleft">
+			
+								<div class="nfbod=y">
+									
+								<div class="p_head">
+								<div class="p_nmdate">
+								{% comment %} <h5>No Notification Found! {{applied}}</h5> {% endcomment %}
+								</div>
+							</div>
+						</div>
+								<div class="nfbody">
+								<div class="p_head">
+								<div style="float: right;">
+										
+								</div>
+								<div>{% if q == "YES" %}
+									<h5>No Notification Found!</h5>
+									{% comment %} <img src="image/profilepic/'.$pro_pic_db.'" width="41px" height="41px"> {% endcomment %}
+								</div>{% else %}{% for ap in applied%}
+								<div class="p_nmdate">
+									<h4><a href="" style="color: #087E0D;">{{ap.appliedname}},{{ap.appliedby}}</a> <span style="color: #626262; font-weight: 100;"></span></h4>
+									<h5 style="color: #757575;"><a class="c_ptime" >Send you a request</a></h5>
+									<form action="/viewteacher/{{ap.pk}}/" method="post"> {% csrf_token %} 
+										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="View Contact" />
+									</form><form action="/CHAT/index/{{ap.pk}}/" method="post">  {% csrf_token %}
+									<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Chat" />
+									</form>
+								</div><hr>{% endfor %}
+							</div>
+						</div>{% endif %}
+								{% comment %} <div class="nfbody">
+								<div class="p_head">
+								<div style="float: right;">';
+							<input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Already Confirm" />
+													<form action="chat/data.php?app_tut='.$applied_by_id.'" method="post">
+													<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Chat" />
+													</form>';
+												<form action="approvetutor.php?app_tut='.$post_id.'" method="post">
+										<input type="submit" class="sub_button"  style="margin: 0px;" name="" value="Confirm" />
+									</form></div>
+								<div>
+									<img src="image/profilepic/'.$pro_pic_db.'" width="41px" height="41px">
+								</div>
+								<div class="p_nmdate">
+									<h4><a href="aboutme.php?uid='.$applied_by_id.'" style="color: #087E0D;"></a> <span style="color: #626262; font-weight: 100;">'</span></h4>
+									<h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a></h5>
+								</div>
+							</div>
+						</div> {% endcomment %}
+
+
+
+				
+		</div>
+		<div class="nfeedright">
+			
+		</div>
+	</div>
+
+
+</div>
+<!-- main jquery script -->
+<script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+<!-- homemenu tab script -->
+<script  src="{% static 'js/homemenu.js' %}"></script>
+
+<!-- topnavfixed script -->
+<script  src="{% static 'js/topnavfixed.js' %}"></script>
+
+</body>
+</html>
+
+{% endblock %}

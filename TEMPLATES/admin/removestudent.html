@@ -12,7 +12,7 @@
 
 <title>Admin</title>
 {% comment %} <style media="all" type="text/css""css/all.css"; {% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/all.css' %}">
 
 </style>
 <style>
@@ -28,7 +28,7 @@
   </style>
 </head>
 
-<div id="main">
+<div id="mainf">
  
   
   <div id="header">
@@ -39,19 +39,19 @@
     <li><span><span><a href="/ADMIN/Approveuser/">Conform</a></span></span></li>
     <li><span><span><a href="/ADMIN/Deleteuser/">Delete tutor</a></span></span></li>
       <li class="active"><span><span>Delete student</span></span></li>
-      <li><span><span><a href="product.php">Add tutor</a></span></span></li>
+      <li><span><span><a href="/ADMIN/admaddtutor/">Add tutor</a></span></span></li>
     </ul>
-  </div></div>
-  <div id="mid?dle">
+  </div>
+  
     {% comment %} <div id="center-column"> {% endcomment %}
-      <br>
-      <br>
+      
 
         {% comment %} <div class="top-bar">  {% endcomment %}
         
         </div>
-       
+      </div>  
         {% for d in sdata %}
+        <div id="middle">
        <form action="" method="post">
        {% comment %} <label for="fname">Tutor id</label><br>
        <input type="number" id="t_id" name="t_id"><br>
@@ -90,6 +90,7 @@
                   </div>
                   <div class="p_nmdate">
                     <h4>{{d.name}}</h4>
+                    <h5 style="color: #757575;">{{d.date}} &nbsp;|&nbsp; Deadline: {{d.deadline}}</h5>
                     <h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a> &nbsp;&nbsp;</h5>
                   </div>
                 </div>

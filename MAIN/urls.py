@@ -34,6 +34,11 @@ urlpatterns = [
     path('confirmteacher/<int:pk>/', views.confirmteacher, name="confirmteacher"),
     path('personaltutordata', views.personaltutordata, name="personaltutordata"),
     path('editteacher', views.editteacher, name="editteacher"),
+    path('resetpassword', views.resetpassword, name="resetpassword"),
+    path('printpw', views.printpw, name="printpw"),
+    path('changepwd', views.changepwd, name="changepwd"),
+    path('logout',views.logout,name='logout')
+
 
 
 

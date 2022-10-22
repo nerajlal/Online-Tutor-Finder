@@ -10,25 +10,26 @@
 <title>Admin</title>
 {% comment %} <style media="all" type="text/css"> {% endcomment %}
 {% comment %}  @import "css/all.css";  {% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/all.css'%} ">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/all.css'%} ">
 </style>
 </head>
 <body>
 <div id="main">
-  <div id="header"> <a href="#" class="logo"><img src="{% static 'img/logo.gif'%}" width="101" height="29" alt="" /></a>
+  <div id="header">
+     {% comment %} <a href="#" class="logo"><img src="{% static 'img/logo.gif'%}" width="101" height="29" alt="" /></a> {% endcomment %}
     <ul id="top-navigation">
-      <li><span><span><a href="/adindex">Home</a></span></span></li>
-      <li><span><span><a href="/user">User</a></span></span></li>
-      <li><span><span><a href="/bus">Bus</a></span></span></li>
-      <li class="active"><span><span>Add</span></span></li>
+      <li><span><span><a href="/ADMIN/Approveuser/">Conform</a></span></span></li>
+    <li><span><span><a href="/ADMIN/Deleteuser/">Delete tutor</a></span></span></li>
+    <li><span><span><a href="/ADMIN/Deletestudent/">Delete student</a></span></span></li>
+    <li class="active"><span><span><a href="/ADMIN/admaddtutor/">Add tutor</a></span></span></li>
     </ul>
   </div>
   <div id="middle">
     <div id="center-column">
-      <div class="top-bar"> <a href="#" class="button">ADD NEW </a>
-        <h1>Contents</h1>
+      <div class="top-bar"> </a>
+        {% comment %} <h1>Contents</h1>
         <div class="breadcrumbs"><a href="#">Product</a> / <a href="#">Contents</a></div>
-        
+         {% endcomment %}
       </div>
       <br />
       

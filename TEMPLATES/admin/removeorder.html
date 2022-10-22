@@ -12,7 +12,7 @@
 
 <title>Admin</title>
 {% comment %} <style media="all" type="text/css""css/all.css"; {% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/all.css' %}">
 
 </style>
 <style>
@@ -27,13 +27,13 @@
     padding: 0px;
   }
   </style>
-</head>
 
-<div id="main">
+<div id="mainf">
+ 
  
   
   <div id="header">
-     <a href="#" class="logo"><img src="{% static 'img/logo.gif' %} " width="101" height="29" alt=""/></a>
+     {% comment %} <a href="#" class="logo"></a> {% endcomment %}
     <ul id="top-navigation">
     <li><span><span><a href="/ADMIN/admindex/">Home</a></span></span></li>
     {% comment %} <li><span><span><a href="user.php">User</a></span></span></li> {% endcomment %}
@@ -41,19 +41,22 @@
       <li class="active"><span><span>Delete tutor</span></span></li>
       <li><span><span><a href="/ADMIN/Deletestudent/">Delete student</a></span></span></li>
       
-      <li><span><span><a href="product.php">Add tutor</a></span></span></li>
+      <li class=""><span><span><a href="/ADMIN/admaddtutor/">Add tutor</a></span></span></li>
     </ul>
-  </div></div>
-  <div id="mid?dle">
+  
+ 
+    
     {% comment %} <div id="center-column"> {% endcomment %}
       <br>
       <br>
 
         {% comment %} <div class="top-bar">  {% endcomment %}
-        
-        </div>
+          <br>
+          <br>
        
+       </div>
         {% for d in data %}
+        <div id="middle"> 
        <form action="" method="post">
        {% comment %} <label for="fname">Tutor id</label><br>
        <input type="number" id="t_id" name="t_id"><br>
@@ -79,6 +82,7 @@
        
       
         <div class="">
+         
                   <div class="nfbody">
                   <div class="p_head">
                   <div style="float: right;">
@@ -92,6 +96,7 @@
                   </div>
                   <div class="p_nmdate">
                     <h4>{{d.name}}</h4>
+                    
                     <h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a> &nbsp;&nbsp;</h5>
                   </div>
                 </div>
@@ -156,10 +161,9 @@
                       </div>
                     </div>
                 </div>
-              </div>
+              </div></div>
               
     
-        </div>
         {% comment %} <div class="nfeedright">
           
         </div> {% endcomment %}

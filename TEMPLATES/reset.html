@@ -1,0 +1,139 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Educare</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-softy-pinko.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/reg.css' %}" rel="stylesheet" type="text/css" media="all" />
+    
+    </head>
+    
+    <body>
+    
+    
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="EduCare"/> -->
+							<H1 class="">EduCare</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="" class="active">Home</a></li>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">SignUp</a></li>
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header><div class="welcome-area" id="welcome">
+			<!-- newsfeed -->
+			<div style="margin: 20px; overflow: hidden;height:700px">
+				<div style="height:100px" >
+			
+				</div><BR>
+				<BR><BR>	<BR><BR>
+				<div style="width: 1000px; margin: 0 auto;">
+				
+					<ul>
+						<li style="float: left;">
+							<div class="settingsleftcontent">
+								<ul>
+									{% comment %} <li><a href="profile.php?uid='.$user.'" >Post</a></li>
+									<li><a href="aboutme.php?uid='.$user.'">About</a></li>
+									<li><a href="settings.php" style=" background-color: #4CAF50; border-radius: 4px; color: #fff;">Settings</li> {% endcomment %}
+								</ul>
+							</div>
+						</li>
+						<li style="float: ight;">
+							<div class="testbox">
+								<form action="/changepwd" method="POST" class="registration">
+									{% csrf_token %}
+										<div class="signup_error_msg">
+									<!-- error here -->
+										</div>
+										<div style="text-align: center;font-size: 20px;color: #aaa;margin: 0 0 5px 0;">
+											<td >Reset Password</td>
+										</div><BR>
+										 <div>
+											<td><input class="" type="password" name="otp" placeholder="Enter OTP"></td>
+										</div>
+										<div>
+											<td><input class="" type="password" name="pwd1" placeholder="New Password"></td>
+										</div>
+										<div>
+											<td><input class="" type="password" name="pwd2" placeholder="Repeat Password"></td>
+										</div>
+										{% comment %} <div style="text-align: center;font-size: 20px;color: #aaa;margin: 0 0 5px 0;">
+											<td >Change Email:</td>
+										</div> {% endcomment %}
+										{% comment %} <div>
+											<td><input class="" required type="email" name="email" placeholder="Email" value=""></td>
+										</div>	<BR> {% endcomment %}
+										<div>
+											<td><input class="sub_button" type="submit" name="changesettings" value="Submit"></td>
+										</div>	<BR><BR>
+											<P style="color:red;">{% for message in messages%}
+											{{message}}
+											{% endfor %}
+											</p>
+								</form>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			{% for message in messages%}
+			{{message}}
+			{% endfor %}
+			<!-- footer -->}	
+	<!-- footer -->
+	<div>
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+  </body>
+</html>
+{% endblock %}

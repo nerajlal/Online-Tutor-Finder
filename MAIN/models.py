@@ -16,6 +16,8 @@ class Users(models.Model):
 
     def __str__(self):
         return self.email
+
+        
 class Tutioninfo(models.Model):
     email=models.CharField(max_length=200,null=True)
     medium=models.CharField(max_length=200,null=True)

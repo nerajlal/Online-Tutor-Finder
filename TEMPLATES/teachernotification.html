@@ -2,64 +2,74 @@
 
 {% block content %}
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+<html lang="en">
 
-	<!-- menu tab link -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <head>
 
-	
-</head>
-<body class="body1">
-<div>
-	<div>
-		<header class="header">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
 
-			<div class="header-cont">
+    <title>Educare</title>
 
-				<h1><a href="index.php">Educare</span></a></h1>
-				<h3><a href="#">Hotline: +91 8590208470</a></h3>
 
-			</div>
-		</header>
-		  
-		</div>
-		<div class="topnav">
-			<div class="parent2">
-		  {% comment %} <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div> {% endcomment %}
-		</div>
-			{% comment %} <a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a> {% endcomment %}
-			<div style="float: right;" >
-				<table>
-					<tr><td>
-						<a class="navlink" href="/formView">Posts</a>
-					</td>
-						<td>
-							<a class="active navlink" href="">Notification'.1.'</a>
-						</td>
-								<td>
-							<a class="navlink" href="/profile">{{data.name}}</a>
-						</td>
-						<td>
-							<a class="navlink" href="logout.php">Logout</a>
-						</td>
-						
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div><BR><BR>
-	<!-- newsfeed -->
-	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
-		<div class="nfeedleft">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-softy-pinko.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+    </head>
+    
+    <body style="background-color:blue; overflow: scroll;">
+    
+    
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="EduCare"/> -->
+							<H1 class="">EduCare</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            
+                                <li><a href="/" >Home</a></li>
+                                <li><a href="/notification">Notifications</a></li>
+                                <li><a href="/CHAT/chatNotification">Chat Notifications</a></li>
+                                <li><a   href="/index1">Posts</a></li>
+                                <li><a  href="/profile">Profile</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                                
+                                
+                                
+                           
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="welcome-area" id="welcome" style ="height:100">
+        
+		
+    <div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedleft"><div style="height:100px" >
+			
+		</div><BR>
 			
 								<div class="nfbod=y">
 									
@@ -117,19 +127,44 @@
 			
 		</div>
 	</div>
-
-
 </div>
-<!-- main jquery script -->
-<script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+</body>  
 
-<!-- homemenu tab script -->
-<script  src="{% static 'js/homemenu.js' %}"></script>
+  
+        {% comment %} <div class="header-text">
+           
+        </div> {% endcomment %}
 
-<!-- topnavfixed script -->
-<script  src="{% static 'js/topnavfixed.js' %}"></script>
+    </div>
+ 
 
-</body>
+ 
+
+    
+  
+
+    
+
+  
+
+    
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+  </body>
 </html>
-
 {% endblock %}

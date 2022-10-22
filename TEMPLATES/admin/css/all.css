@@ -106,7 +106,7 @@ a.logo {
 #middle {
 	float:left;
 	width:967px;
-	background:url(../img/bg-middle.gif) repeat-y left;
+	<!-- background:url(../img/bg-middle.gif) repeat-y left; -->
 	padding:0 13px 0 12px;
 	}
 /* left column */

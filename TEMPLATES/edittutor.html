@@ -1,73 +1,72 @@
 {% load static %}
 
-{% block content %}`
+{% block content %}
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<!-- menu tab link -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-</head>
-<body class="body1">
-<div>
-	<div>
-		<header class="header">
+<html lang="en">
 
-			<div class="header-cont">
+  <head>
 
-				<!--
-					include 'inc/banner.inc.php';
-				-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
 
-			</div>
-		</header>
-		<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-animate-left" stylRe="width:100px;" id="mySidebar">
-		  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
-		  <a href="index.php" class="w3-bar-item w3-button">Tution</a>
-		  <a href="photography.php" class="w3-bar-item w3-button">Photography</a>
-		  <a href="#" class="w3-bar-item w3-button">IT</a>
-		</div>
-		<div class="topnav">
-			<div class="parent2">
-		  <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
-		</div>
-			<a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a>
-			<a class="navlink" href="#news">Search Tutor</a>
-		    <a class="navlink" href="postform.php">Post</a>
-			<a class="navlink" href="#contact">Contact</a>
-			<a class="navlink" href="#about">About</a>
-			<div style="float: right;" >
-				<table>
-					<tr>
-						<td>
-							<a class="active navlink" href="profile.php?uid='.$user.'">{{data.name}}</a>
-						</td>
-						<td>
-							<a class="navlink" href="logout.php">Logout</a>
-						</td><td>
-							<a class="navlink" href="login.php">Login</a>
-						</td>
-						<td>
-							<a class="navlink" href="registration.php">Register</a>
-						</td>
-						
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+    <title>Educare</title>
 
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-softy-pinko.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+    </head>
+    
+    <body>
+    
+    
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="EduCare"/> -->
+							<H1 class="">EduCare</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="" >Home</a></li>
+                          <li><a href="/notification">Notifications</a></li>
+                          <li><a href="/CHAT/chatNotification">Chat Notifications</a></li>
+                          <li><a   href="/formView">Posts</a></li>
+                          <li><a  href="/profile">Profile</a></li>
+                          <li><a href="/logout">Logout</a></li>
+                            
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header><div class="welcome-area" id="welcome"style="height:auto">
+			<!-- newsfeed -->
 	<!-- newsfeed -->
 	<div style="margin: 20px; overflow: hidden;">
+        <div style="height:100px" >
+			
+        </div><BR>
 		<div style="width: 1000px;">
-				<li style="float: right;">
+				<li style="float: left;">
 								<form action="/editteacher" method="POST" class="registration" enctype="multipart/form-data">
 									{% csrf_token %}
 									
@@ -204,17 +203,22 @@
 			</ul>
 		</div>
 	</div>
-	<!-- footer -->
-	<div>
-	<!--
-		include 'inc/footer.inc.php';
-	-->
-	</div>
-</div>
-<!-- homemenu tab script -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script  src="{% static 'js/homemenu.js' %}"></script>
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
 
-</body>
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+  </body>
 </html>
 {% endblock %}

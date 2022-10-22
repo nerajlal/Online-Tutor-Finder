@@ -12,7 +12,7 @@
 
 <title>Admin</title>
 {% comment %} <style media="all" type="text/css""css/all.css"; {% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/all.css' %}">
 
 </style>
 <style>
@@ -29,11 +29,13 @@
   </style>
 </head>
 
-<div id="main">
+<div id="mainf">
+
+
  
   
-  <div id="header">
-     <a href="#" class="logo"><img src="{% static 'img/logo.gif' %} " width="101" height="29" alt=""/></a>
+  <div id="header" ><BR><BR><BR><BR><BR><BR>
+     {% comment %} <a href="#" class="logo"><img src="{% static 'img/logo.gif' %} " width="101" height="29" alt=""/></a> {% endcomment %}
     <ul id="top-navigation">
     <li><span><span><a href="/ADMIN/admindex/">Home</a></span></span></li>
     {% comment %} <li><span><span><a href="user.php">User</a></span></span></li> {% endcomment %}
@@ -42,17 +44,20 @@
       <li><span><span><a href="/ADMIN/Deletestudent/">Delete student</a></span></span></li>
       <li><span><span><a href="/ADMIN/admaddtutor/">Add tutor</a></span></span></li>
     </ul>
-  </div></div>
-  <div id="mid?dle">
+  
+  
     {% comment %} <div id="center-column"> {% endcomment %}
       <br>
+      <br> <br>
       <br>
+      
 
         {% comment %} <div class="top-bar">  {% endcomment %}
         
+        
         </div>
-       
         {% for d in data %}
+        <div id="middle">
        <form action="" method="post">
        {% comment %} <label for="fname">Tutor id</label><br>
        <input type="number" id="t_id" name="t_id"><br>
@@ -165,7 +170,7 @@
         </div> {% endcomment %}
       </div>
       
-    </div> </form>  {% endfor %}
+    </div> </form> {% endfor %}
     <script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 
     <!-- homemenu tab script -->

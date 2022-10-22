@@ -1,0 +1,111 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'css/reg.css' %}"  rel="stylesheet" type="text/css" media="all" />
+	<!-- menu tab link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+</head>
+<body class="" style=" height: 700px;width: 100%;">
+<div>
+<div>
+		<header class="header">
+
+			<div class="header-cont">
+
+				<h1><a href="index.php">Educare</span></a></h1>
+				<h3><a href="#"></a></h3>
+				
+				<!--	include 'inc/banner.inc.php -->
+
+			</div>
+		</header>
+		<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-animate-left" style="width:100px;" id="mySidebar">
+		  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+		  <a href="index.php" class="w3-bar-item w3-button">Tution</a>
+		  <a href="photography.php" class="w3-bar-item w3-button">Photography</a>
+		  <a href="#" class="w3-bar-item w3-button">IT</a>
+		</div>
+		<div class="topnav">
+			<div class="parent2">
+		  {% comment %} <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
+		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
+		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div> {% endcomment %}
+		</div>
+			{% comment %} <a class="navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a> {% endcomment %}
+				<div style="float: right;" >
+				<table>
+					<tr>
+								<td>
+							<a class="active navlink" href="/login">Login</a>
+						</td>
+						{% comment %} <td>
+							<a class="navlink" href="logout.php">Logout</a>
+						</td><td>
+							<a class="active navlink" href="login.php">Login</a>
+						</td> {% endcomment %}
+						<td>
+							<a class="navlink" href='/register'>Register</a>
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div><BR><BR><BR><BR><BR>
+	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
+		<div class="nfeedlefts" style="background-color: unset;">
+			<div>
+		<div class="testbox" style="height: 280px;"><BR><BR>
+  <h1>Login</h1><BR>
+
+  <form action="/user_login" method="post">
+	{% csrf_token %}
+      <hr>
+  <input type="text" id="name" name="email" id="name" placeholder="Email" required/>
+  <input type="password" id="name" name="password" id="name" placeholder="Password" required/>
+  <div>
+  <div style="float: right; width: 35%; margin-top: 10px;">
+  	<input type="submit" class="sub_button" name="login" id="name" value="Login"/><br><br>
+  </div>
+  <div style="width: 50%; float: left; padding: 10px 0 5px 4px">
+  	<p>Forget your password?<a href="/printpw" style="font-weight: bold;">Click here</a>.</p>
+  <p>Not registered yet?<a href="/register" style="font-weight: bold;">Register here</a>
+  <br>
+  <br>
+ 
+  <a href="/ADMIN/admlogin/" style="font-weight: bold;">Admin</a><BR>
+  </p>
+  </div>
+  </div>
+  </form>
+</div>
+	</div>
+		</div>
+		<div class="nfeedright">
+			
+		</div>
+	</div>
+
+	
+	  {% comment %} <div> {% endcomment %}
+	<?php
+		include 'inc/footer.inc.php';
+	?>
+	{% comment %} </div>  {% endcomment %}
+	</div>
+ <!-- homemenu tab script -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="{% static 'js/homemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

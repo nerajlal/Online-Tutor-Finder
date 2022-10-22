@@ -1,7 +1,9 @@
+from errno import EMLINK
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from .models import ConfirmedList, Studentdata, Users,AppliedList,ForApproval,Tutordata
 from .models import Tutioninfo
+from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
@@ -9,15 +11,26 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib import auth
 from datetime import datetime
+import random
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+
 # from .forms import StudentForm
   
 # import crypt
 def index(request):
-    studdata=Studentdata.objects.all()
-    con={
-            'data':studdata
-        }
-    return render(request,"index1.html",con)
+     if request.session.has_key('email'):
+        email = request.session['email']
+        data=Users.objects.get(email=email)
+        if data.account=="teacher":
+            return redirect("/index1")
+        else:
+            return render(request,"index1.html")
+       
+     else:
+       
+        return render(request,"index1.html")  
+    
 
 def index1(request):
     if request.session.has_key('email'):
@@ -41,7 +54,6 @@ def index1(request):
 
         mylist = zip(studdata, count)
        
-       
         con={
                 'data':studdata,
                 'addata':ad,
@@ -49,6 +61,9 @@ def index1(request):
                 'wm':wm
             }
         return render(request,"index.html",con)
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 
 def about(request):
@@ -60,41 +75,46 @@ def register(request):
 def register_user(request):
     if request.method == 'POST':
         typeuser=request.POST['account']
-        if typeuser=="student":
-            typeuser=request.POST['account']
-            name = request.POST['name']
-            email = request.POST['email']
-            phone = request.POST['mobile']
-            gender=request.POST['gender']
-            password1 = request.POST['password']
-            t=typeuser
-            # password_hash = crypt.crypt(password1)
-            # password2 = request.POST['cpassword']
-            users = Users.objects.create(account=typeuser,name=name, email=email, 
-                                            phone=phone, password = password1,gender=gender)
-            users.save()
-            # if typeuser=="student":
-            request.session['email'] = email
-            return redirect("/studentdata")
-        # To check the password.
-        # valid_password = crypt.crypt(cleartext, password_hash) == password_hash
-        
+        email = request.POST['email']
+        if Users.objects.filter(email=email).exists():
+            messages.success(request,"e-mail already exists")
+            return render(request,'registration.html')
         else:
-            typeuser=request.POST['account']
-            name = request.POST['name']
-            email = request.POST['email']
-            phone = request.POST['mobile']
-            gender=request.POST['gender']
-            password1 = request.POST['password']
-            t=typeuser
-            # password_hash = crypt.crypt(password1)
-            # password2 = request.POST['cpassword']
-            users =ForApproval.objects.create(account=typeuser,name=name, email=email, 
-                                            phone=phone, password = password1,gender=gender)
-            users.save()
-         
-         
-            return render(request, "updatetutorinfo.html")
+            if typeuser=="student":
+                typeuser=request.POST['account']
+                name = request.POST['name']
+                email = request.POST['email']
+                phone = request.POST['mobile']
+                gender=request.POST['gender']
+                password1 = request.POST['password']
+                t=typeuser
+                # password_hash = crypt.crypt(password1)
+                # password2 = request.POST['cpassword']
+                users = Users.objects.create(account=typeuser,name=name, email=email, 
+                                                phone=phone, password = password1,gender=gender)
+                users.save()
+                # if typeuser=="student":
+                request.session['email'] = email
+                return redirect("/studentdata")
+            # To check the password.
+            # valid_password = crypt.crypt(cleartext, password_hash) == password_hash
+            
+            else:
+                typeuser=request.POST['account']
+                name = request.POST['name']
+                email = request.POST['email']
+                phone = request.POST['mobile']
+                gender=request.POST['gender']
+                password1 = request.POST['password']
+                t=typeuser
+                # password_hash = crypt.crypt(password1)
+                # password2 = request.POST['cpassword']
+                users =ForApproval.objects.create(account=typeuser,name=name, email=email, 
+                                                phone=phone, password = password1,gender=gender)
+                users.save()
+            
+            
+                return render(request, "updatetutorinfo.html")
 
 
 
@@ -147,7 +167,9 @@ def formView(request):
             'data':studdata
         }
         return render(request,"studentpost.html",con)
-
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
       
 # def admlogin(request):
@@ -155,8 +177,7 @@ def formView(request):
 def tutioninfo(request):
     return render(request,"updatetutioninfo.html")
 
-def tutiondata(request):
-    
+def tutiondata(request):   
         g=request.POST.getlist('sub_list[]')
         stud= request.session['email']  
         medium=request.POST.getlist('medium_list[]')
@@ -190,6 +211,10 @@ def postdata(request):
         }
         # return render(request,"postform.html")
        return render(request,"postform.html", con)
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
+
 
 def studentdata(request):
     if request.session.has_key('email'):
@@ -199,7 +224,9 @@ def studentdata(request):
             'data':dta
         }
         return render(request,"updateinfo.html",con)
-    
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 # def studentinput(request):
 #     context ={}
@@ -229,7 +256,9 @@ def studentinput(request):
         info=Studentdata.objects.create(email=email,name=name,gender=gender,proimg=img,address=address,institute=institute,phone=phone,deadline=deadline)
         info.save()
         return redirect('/uptution')
-
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 def poststudent(request):
     studdata=Studentdata.objects.all()
     con={
@@ -237,8 +266,11 @@ def poststudent(request):
         }
     return render(request,"index.html",con)
 
+
 def uptution(request):
     return render(request,"updatetutioninfo.html")
+
+
 
 def notification(request):
     if request.session.has_key('email'):
@@ -276,6 +308,9 @@ def notification(request):
                 "q":q
             }
             return render(request,"teachernotification.html",con)
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 
 
@@ -293,6 +328,9 @@ def apply(request,pk):
         apply = AppliedList.objects.create(student=mail,appliedby=email,appliedname=apname) 
         apply.save()
         return redirect('/index1')
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
     
 def profile(request):
      if request.session.has_key('email'):
@@ -316,6 +354,9 @@ def profile(request):
             }
 
         return render(request,'profile.html',con)
+     else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 
 def tutordata(request):
@@ -348,13 +389,8 @@ def tutordata(request):
         apply.address=address
         apply.institute=institute
         apply.save()
-
-
-
-
-
-
-        return redirect('/')
+        messages.info(request,"Registration successfull Wait for admin approval")
+        return render(request,'registration.html')
     
 
 
@@ -389,6 +425,9 @@ def studentedit(request):
         email = request.session['email']
         Studentdata.objects.filter( email = email).update(medium=limed ,subjects=lisub,cls=licls,salary=sal,location=loc)
         return redirect('/profile')
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 def personalstuddata(request):
     if request.session.has_key('email'):
@@ -427,6 +466,8 @@ def viewteacher(request,pk):
         }
         return render(request,'viewteacher.html',con)
 
+
+
 def confirmteacher(request,pk):
     if request.session.has_key('email'):
         email = request.session['email']
@@ -438,6 +479,9 @@ def confirmteacher(request,pk):
         apply = ConfirmedList.objects.create(teacher=mail,appliedby=email,appliedname=apname) 
         apply.save()
         return redirect('/notification')
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
 
 
 
@@ -449,6 +493,11 @@ def personaltutordata(request):
             'data':dta
         }
         return render(request,'edittutor.html',con)
+    else:
+        return HttpResponse("<h1>Server error Please login to return to this page<h1> ")
+     
+
+
 
 def editteacher(request):
     if request.session.has_key('email'):
@@ -504,9 +553,61 @@ def editteacher(request):
             apply.save()
             return redirect('/profile')
 
+def resetpassword(request):
+    email=request.POST['email']
+    if Users.objects.filter(email=email).exists():
+        # email="anandhua14@gmail.com"
+        TO=email
+        otp = random.randint(999,9999)
+        global rp
+        global eml 
+        eml=email
+        rp=otp
+
+        stotp=str(otp)
+        string="your One Time Password for resetting EDUCARE user password is "
+        msgs=string+stotp+" And is only valid for 2 minutes"
+        # print(type(msgs))
+        send_mail(
+                'EDUCARE Password reset OTP',
+                "".join(msgs),
+                'educaretutorfinder@gmail.com',
+                [TO],
+                
+                fail_silently=False,
+                        )
+        return render(request,"reset.html")
+    else:
+        messages.success(request,"Unknown User e-mail id does not exist")
+        return render(request,"settings.html")
+
+
+
+def printpw(request):
+   return render(request,"settings.html")
 
 
 
 
+def changepwd(request):
+    pwd1=request.POST['pwd1']
+    pwd2=request.POST['pwd2']
+    otp=request.POST['otp']
+    global rp
+    global eml
+    if rp==int(otp):
+        if pwd1==pwd2:
+            cpwd=Users.objects.filter(email=eml).update(password=pwd1)
+            return render(request,"login.html")
+        else:
+            messages.info(request,"passwords Does not match")
+            return render(request,"reset.html")
+    else:
+        messages.info(request,"OTP doesnot match")
+        return render(request,"reset.html")
+def logout(request):
+    if request.session.has_key('email'):
+        request.session.flush()
+        return redirect('/')
        
 

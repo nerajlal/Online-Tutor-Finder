@@ -7,8 +7,10 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
-from MAIN.models import ForApproval, Studentdata, Tutordata, Users
+from MAIN.models import ForApproval, Studentdata, Tutordata,Users
 
 # Create your views here.
 def admlogin(request):
@@ -104,12 +106,22 @@ def Approveuser(request):
 def approved(request,pk):
      if request.session.has_key('email'):
         email = request.session['email']
+        
         # obj = Studentdata.objects.filter(pk=pk)
         obj1= ForApproval.objects.get(pk=pk)
+        TO=obj1.email
         create=Tutordata.objects.create(name=obj1.name,email=obj1.email,medium=obj1.medium ,subjects=obj1.subjects,cls=obj1.cls,salary=obj1.salary,location=obj1.location, tutorimg=obj1.tutorimg, certificate1=obj1.certificate1,certificate2=obj1.certificate2,address=obj1.address,institute=obj1.institute, phone=obj1.phone,gender=obj1.gender,account=obj1.account) 
         users = Users.objects.create(account=obj1.account,name=obj1.name, email=obj1.email, phone=obj1.phone, password = obj1.password,gender=obj1.gender)
         create.save()
         users.save()
+        send_mail(
+            'APPROVAL FROM EDUCARE',
+            'Your request for bar joining "EDUCARE" has been approoved',
+            'educaretutorfinder@gmail.com',
+            [TO],
+            
+            fail_silently=False,
+                 )
         obj5 = ForApproval.objects.filter(pk=pk)
         obj5.delete()
         return redirect('/ADMIN/Approveuser')

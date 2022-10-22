@@ -1,161 +1,107 @@
-
 {% load static %}
 
 {% block content %}
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" media="all" />
+<html lang="en">
 
-	<!-- menu tab link -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/homemenu.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <head>
 
-	
-</head>
-<body class="body1">
-<div>
-	<div>
-		<header class="header">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
 
-			<div class="header-cont">
+    <title>Educare</title>
 
-				<h1><a href="index.php">Educare</span></a></h1>
-				<h3><a href="#">Hotline: +91 8590208470</a></h3>
-				
 
-			</div>
-		</header>
-		  
-		</div>
-		<div class="topnav">
-			<div class="parent2">
-		  {% comment %} <div class="test1 bimage1"><a href=""><img src="{% static 'image/tech.png' %}" title="IT Solution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="test2"><a href="#"><img src="{% static 'image/eventmgt.png' %}" title="Event Management" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test3"><a href="#"><img src="{% static 'image/photography.png' %}" title="Photography" width="42" height="42" style="border-radius: 50%;"></a></div>
-		  <div class="test4"><a href="#"><img src="{% static 'image/teaching.png' %}" title="Tution" style="border-radius: 50%;" width="42" height="42"></a></div>
-		  <div class="mask2"><i class="fa fa-home fa-3x"></i></div> {% endcomment %}
-		</div>
-			{% comment %} <a class="active navlink" href="index.php" style="margin: 0px 0px 0px 100px;">Newsfeed</a> {% endcomment %}
-			<div style="float: right;" >
-				<table>
-					<tr>
-						{% comment %} <td>
-							<a class="navlink" href="notification.php">Notification."1"</a>
-						</td> {% endcomment %}
-								{% comment %} <td>
-							<a class="navlink" href="profile.php?uid='.$user.'">user name</a>
-						</td> {% endcomment %}
-						{% comment %} <td>
-							<a class="navlink" href="logout.php">Logout</a>
-						</td> {% endcomment %}
-						<td>
-							<a class="navlink" href="/login">Login</a>
-						</td>
-						<td>
-							<a class="navlink" href="/register">Register</a>
-							
-						
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+    <!-- Additional CSS Files -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets2/css/bootstrap.min.css' %}">
 
-	<!-- newsfeed -->
-	<BR><BR>
-	{% for d in data %}
-	<div class="nbody" style="margin: 0px 100px; overflow: hidden;">
-		<div class="nfeedleft">
-							<div class="nfbody">
-							<div class="p_head">
-							<div style="float: right;">
-										{% comment %} <input type="submit" class="sub_button" style="margin: 0px; background-color: #a76d6d; cursor: default;" name="" value="Deadline Over" /> {% endcomment %}
-											{% comment %} <input type="button" class="sub_button" style="margin: 0px; background-color: #a76d6d;cursor: default;" name="" value="Already Applied" /> {% endcomment %}
-											<form  method="post">{% csrf_token %}
-									<input type="submit" class="sub_button" style="margin: 0px;" name="" value="Apply" formaction="/login"/>
-								</form></div>
-							<div>
-								<img src="{{d.proimg.url}}" width="41px" height="41px">
-							</div>
-							<div class="p_nmdate">
-								<h4>{{d.name}}</h4>
-								<h5 style="color: #757575;"><a class="c_ptime" href="viewpost.php?pid='.$post_id.'"></a> &nbsp;&nbsp;</h5>
-							</div>
-						</div>
-						<div class="p_body">
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<p><label>Subject: </label></p>
-					  			</div>
-					  			<div class="itemrowdiv2">
-									
-					  				<span>{{d.subjects}}</span>
-									 
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Class: </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>{{d.cls}}</span>
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Medium: </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>{{d.medium}}</span>
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Salary: </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>{{d.salary}}</span>
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Location: </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>{{d.location}}</span>
-					  			</div>
-					  		</div>
-							<div class="itemrow">
-					  			<div class="itemrowdiv1">
-					  				<label>Institute </label>
-					  			</div>
-					  			<div class="itemrowdiv2">
-					  				<span>{{d.institute}}</span>
-					  			</div>
-					  		</div>
-						</div>
-					</div>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets2/css/font-awesome.css' %}">
 
-		</div>
-		<div class="nfeedright">
-			
-		</div>
-	</div>
-	
+    <link rel="stylesheet" href="{% static 'assets2/css/templatemo-softy-pinko.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    
+    <body>
+    
+    
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="EduCare"/> -->
+							<H1 class="">EduCare</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="" class="active">Home</a></li>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">SignUp</a></li>
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+ 
+    <div class="welcome-area" id="welcome">
 
-</div>{% endfor %}
-<!-- main jquery script -->
-<script  src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+						<strong> <h1>Welcome To Educare<br>Online Tutor Finder </h1></strong>
+                        {% comment %} <p>Softy Pinko is a professional Bootstrap 4.0 theme designed by Template Mo 
+                        for your company at absolutely free of charge</p> {% endcomment %}
+						 <p>The roots of education are bitter, but the fruit is sweet.<strong> – Aristotle</strong></p><br>
+                        <a href="/login" class="main-button-slider">Register Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- homemenu tab script -->
-<script  src="{% static 'js/homemenu.js' %}"></script>
+    </div>
+ 
 
-<!-- topnavfixed script -->
-<script  src="{% static 'js/topnavfixed.js' %}"></script>
+ 
 
-</body>
+    
+  
+
+    
+
+  
+
+    
+    
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+
+  </body>
 </html>
 {% endblock %}
